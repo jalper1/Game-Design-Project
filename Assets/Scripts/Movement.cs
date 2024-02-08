@@ -1,6 +1,6 @@
- using System.Collections;
-using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Movement : MonoBehaviour
 {
@@ -12,10 +12,12 @@ public class Movement : MonoBehaviour
     bool crouch = false;
     bool jump = false;
 
+    public float attackRate = 2f;
+    public float nextAttackTime = 0f;
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -23,14 +25,22 @@ public class Movement : MonoBehaviour
     {
         horMove = Input.GetAxisRaw("Horizontal") * runSpeed;
         vertMove = Input.GetAxisRaw("Vertical") * runSpeed;
-        if(Input.GetButtonDown("Jump"))
+
+        if (Time.time >= nextAttackTime)
         {
-            jump = true;
+            if (Input.GetButtonDown("Jump"))
+            {
+                jump = true;
+                nextAttackTime = Time.time + 1f / attackRate;
+            }
         }
-        if(Input.GetButtonDown("Crouch"))
+
+
+        if (Input.GetButtonDown("Crouch"))
         {
             crouch = true;
-        } else if(Input.GetButtonUp("Crouch"))
+        }
+        else if (Input.GetButtonUp("Crouch"))
         {
             crouch = false;
         }
