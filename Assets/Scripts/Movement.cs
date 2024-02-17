@@ -5,36 +5,34 @@ using UnityEngine.Events;
 public class Movement : MonoBehaviour
 {
     public CharacterController2D controller;
+    public Animator animator;
+    public Combat combat; // Reference to the Combat script
+
     float horMove = 0f;
     float vertMove = 0f;
     public float runSpeed = 40f;
 
     bool crouch = false;
-    bool jump = false;
+    bool dash = false;
 
-    public float attackRate = 2f;
-    public float nextAttackTime = 0f;
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
+    public float dashRate = 2f;
+    public float nextDashTime = 0f;
 
     // Update is called once per frame
     void Update()
     {
-        horMove = Input.GetAxisRaw("Horizontal") * runSpeed;
-        vertMove = Input.GetAxisRaw("Vertical") * runSpeed;
+        horMove = Input.GetAxisRaw("Horizontal") * (runSpeed / 4);
+        vertMove = Input.GetAxisRaw("Vertical") * (runSpeed / 4);
+        animator.SetFloat("Speed", Mathf.Abs(horMove + vertMove));
 
-        if (Time.time >= nextAttackTime)
+        if (!combat.IsAttacking() && Time.time >= nextDashTime)
         {
-            if (Input.GetButtonDown("Jump"))
+            if (Input.GetButtonDown("Dash"))
             {
-                jump = true;
-                nextAttackTime = Time.time + 1f / attackRate;
+                dash = true;
+                nextDashTime = Time.time + 1f / dashRate;
             }
         }
-
 
         if (Input.GetButtonDown("Crouch"))
         {
@@ -48,8 +46,7 @@ public class Movement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        controller.MoveHor(horMove * Time.fixedDeltaTime, crouch, false);
-        controller.MoveVert(vertMove * Time.fixedDeltaTime, jump);
-        jump = false;
+        controller.Move(horMove, vertMove, crouch, dash);
+        dash = false;
     }
 }
