@@ -26,24 +26,22 @@ public class Combat : MonoBehaviour
                 nextAttackTime = Time.time + 1f / attackRate;
             }
         }
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("idle")) // Check if the current animation is the attack animation
-        { 
-            isAttacking = false; // Set attacking to true when attacking
+
+    }
+
+    private void FixedUpdate()
+    {
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("attack")) // Check if the current animation is the attack animation
+        {
+            isAttacking = true; // Set attacking to true when attacking
+        } else
+        {
+            isAttacking = false; // Set attacking to false when not attacking
         }
-
     }
-
-
-    void Attack()
+    private void Attack()
     {
-        isAttacking = true; // Set attacking to true when attacking
         animator.SetTrigger("Attack");
-    }
-
-    // Method to be called when the attack animation finishes
-    public void FinishAttack()
-    {
-        isAttacking = false; // Set attacking to false when attack animation finishes
     }
 }
 
