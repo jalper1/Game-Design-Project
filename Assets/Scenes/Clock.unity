@@ -254,6 +254,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ba9e529f7389154f9b3c16bb6deb9b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clockText: {fileID: 2138601007}
+  timeInADay: 86400
+  timeScale: 2
 --- !u!4 &1342218024
 Transform:
   m_ObjectHideFlags: 0
