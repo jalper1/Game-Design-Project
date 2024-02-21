@@ -10,6 +10,10 @@ public class Combat : MonoBehaviour
 
     public float attackRate = 2f;
     public float nextAttackTime = 0f;
+    public Transform attackPoint;
+    public float attackRange = 0.5f;
+    public LayerMask enemyLayers;
+    public int attackStrength = 40;
 
     public bool IsAttacking()
     {
@@ -34,7 +38,8 @@ public class Combat : MonoBehaviour
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("attack")) // Check if the current animation is the attack animation
         {
             isAttacking = true; // Set attacking to true when attacking
-        } else
+        }
+        else
         {
             isAttacking = false; // Set attacking to false when not attacking
         }
@@ -42,6 +47,18 @@ public class Combat : MonoBehaviour
     private void Attack()
     {
         animator.SetTrigger("Attack");
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+
+        foreach (Collider2D enemy in hitEnemies)
+        {
+            enemy.GetComponent<Enemy>().ReceiveDamage(attackStrength);
+        }
+    }
+    void OnDrawGizmosSelected()
+    {
+        if (attackPoint == null)
+            return;
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 }
 

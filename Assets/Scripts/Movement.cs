@@ -12,7 +12,6 @@ public class Movement : MonoBehaviour
     float vertMove = 0f;
     public float runSpeed = 40f;
 
-    bool crouch = false;
     bool dash = false;
 
     public float dashRate = 2f;
@@ -33,20 +32,11 @@ public class Movement : MonoBehaviour
                 nextDashTime = Time.time + 1f / dashRate;
             }
         }
-
-        if (Input.GetButtonDown("Crouch"))
-        {
-            crouch = true;
-        }
-        else if (Input.GetButtonUp("Crouch"))
-        {
-            crouch = false;
-        }
     }
 
     private void FixedUpdate()
     {
-        controller.Move(horMove, vertMove, crouch, dash);
+        controller.Move(horMove, vertMove, dash);
         dash = false;
     }
 }
