@@ -47,6 +47,7 @@ public class Combat : MonoBehaviour
     private void Attack()
     {
         animator.SetTrigger("Attack");
+
     }
 
     private void AttackHit()
