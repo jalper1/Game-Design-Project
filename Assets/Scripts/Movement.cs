@@ -22,7 +22,7 @@ public class Movement : MonoBehaviour
     {
         horMove = Input.GetAxisRaw("Horizontal") * (runSpeed / 4);
         vertMove = Input.GetAxisRaw("Vertical") * (runSpeed / 4);
-        animator.SetFloat("Speed", Mathf.Abs(horMove + vertMove));
+        animator.SetFloat("Speed", Mathf.Abs(horMove) + Mathf.Abs(vertMove));
 
         if (!combat.IsAttacking() && Time.time >= nextDashTime)
         {
