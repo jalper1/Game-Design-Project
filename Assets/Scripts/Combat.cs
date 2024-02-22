@@ -12,7 +12,7 @@ public class Combat : MonoBehaviour
     public float nextAttackTime = 0f;
     public Transform attackPoint;
     public float attackRange = 0.5f;
-    public LayerMask enemyLayers;
+    public LayerMask hitLayers;
     public int attackStrength = 40;
 
     public bool IsAttacking()
@@ -47,11 +47,16 @@ public class Combat : MonoBehaviour
     private void Attack()
     {
         animator.SetTrigger("Attack");
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+
+    }
+
+    private void AttackHit()
+    {
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, hitLayers);
 
         foreach (Collider2D enemy in hitEnemies)
         {
-            enemy.GetComponent<Enemy>().ReceiveDamage(attackStrength);
+            enemy.transform.root.GetComponent<Enemy>().ReceiveDamage(attackStrength);
         }
     }
     void OnDrawGizmosSelected()
