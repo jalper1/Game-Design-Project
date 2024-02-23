@@ -7,6 +7,9 @@ public class Combat : MonoBehaviour
     public Animator animator;
 
     private bool isAttacking = false; // New variable to track attack state
+    private Resource resourceGained;
+    public ResourceManage resourceManager;
+    public int harvestStrength = 10;
 
     public float attackRate = 2f;
     public float nextAttackTime = 0f;
@@ -14,10 +17,15 @@ public class Combat : MonoBehaviour
     public float attackRange = 0.5f;
     public LayerMask hitLayers;
     public int attackStrength = 40;
+    public LayerMask resourceLayers;
 
     public bool IsAttacking()
     {
         return isAttacking;
+    }
+    void Start()
+    {
+        resourceManager = GameManager.Instance.playerResources;
     }
 
     void Update()
@@ -47,18 +55,25 @@ public class Combat : MonoBehaviour
     private void Attack()
     {
         animator.SetTrigger("Attack");
-
     }
 
+    // called by animation event
     private void AttackHit()
     {
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, hitLayers);
+        Collider2D[] hitResources = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, resourceLayers);
 
         foreach (Collider2D enemy in hitEnemies)
         {
             enemy.transform.root.GetComponent<Enemy>().ReceiveDamage(attackStrength);
         }
+        foreach (Collider2D resource in hitResources)
+        {
+            resourceGained = resource.transform.GetComponent<ResourceCalc>().CollectResource(harvestStrength);
+            resourceManager.AddToResourceTotal(resourceGained.resourcesGained, resourceGained.type);
+        }
     }
+
     void OnDrawGizmosSelected()
     {
         if (attackPoint == null)

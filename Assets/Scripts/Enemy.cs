@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     public int maxHealth = 100;
     int currentHealth;
     public Collider2D hitBox;
+    public int resourceAmount = 33;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +28,7 @@ public class Enemy : MonoBehaviour
     void Die()
     {
         animator.SetBool("IsDead", true);
+        GameManager.Instance.playerResources.AddToResourceTotal(resourceAmount, ResourceType.Husk);
         GetComponent<Collider2D>().enabled = false;
         hitBox.enabled = false;
         this.enabled = false;
