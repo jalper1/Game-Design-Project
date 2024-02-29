@@ -8,11 +8,14 @@ public class Enemy : MonoBehaviour
     public int maxHealth = 100;
     int currentHealth;
     public Collider2D hitBox;
-    public int resourceAmount = 33;
+    int resourceAmount = 0;
+    public int maxResourceAmount = 50;
+    public int minResourceAmount = 10;
     // Start is called before the first frame update
     void Start()
     {
         currentHealth = maxHealth;
+        resourceAmount = Random.Range(minResourceAmount, maxResourceAmount);
     }
 
     public void ReceiveDamage(int damage)

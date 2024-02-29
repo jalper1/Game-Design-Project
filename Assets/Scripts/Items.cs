@@ -9,4 +9,5 @@ public class Items : ScriptableObject
     public string itemDescription;
     public Sprite itemIcon;
     public int attackPower;
+    public int defensePower;
 }
