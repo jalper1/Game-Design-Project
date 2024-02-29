@@ -1086,7 +1086,8 @@ MonoBehaviour:
   animator: {fileID: 1012863922}
   maxHealth: 100
   hitBox: {fileID: 1527888265}
-  resourceAmount: 33
+  maxResourceAmount: 50
+  minResourceAmount: 10
 --- !u!95 &1012863922 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 95000010572177686, guid: 13c470c5b8dcd4854834911f7e0a9a6c, type: 3}
@@ -1435,6 +1436,10 @@ PrefabInstance:
     - target: {fileID: 4000011028196368, guid: 978fa2fb617654f5eaeff9da6fc7d116, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 212000010006319442, guid: 978fa2fb617654f5eaeff9da6fc7d116, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 212000010006319442, guid: 978fa2fb617654f5eaeff9da6fc7d116, type: 3}
       propertyPath: m_SortingLayer
