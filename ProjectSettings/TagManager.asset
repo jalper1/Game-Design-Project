@@ -15,8 +15,8 @@ TagManager:
   - Player
   - HitBox
   - Resource
-  - Interactable
-  - 
+  - Item
+  - CastleCore
   - 
   - 
   - 

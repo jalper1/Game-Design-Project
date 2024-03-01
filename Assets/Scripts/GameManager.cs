@@ -5,6 +5,7 @@ public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
     public ResourceManage playerResources;
+    public int coreLevel = 1;
 
     // doing something don't interrupt
     public static GameManager Instance
@@ -30,5 +31,14 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public void IncreaseCoreLevel()
+    {
+        coreLevel++;
+    }
+    public int GetCoreLevel()
+    {
+        return coreLevel;
     }
 }
