@@ -8,7 +8,7 @@ public class Combat : MonoBehaviour
 
     private bool isAttacking = false; // New variable to track attack state
     private Resource resourceGained;
-    public ResourceManage resourceManager;
+    private ResourceManage resourceManager;
     public int harvestStrength = 10;
 
     public float attackRate = 2f;
