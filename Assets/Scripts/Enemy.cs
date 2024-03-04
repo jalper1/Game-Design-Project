@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pathfinding;
 
 public class Enemy : MonoBehaviour
 {
@@ -11,12 +12,23 @@ public class Enemy : MonoBehaviour
     int resourceAmount = 0;
     public int maxResourceAmount = 50;
     public int minResourceAmount = 10;
+    //public AIPath aiPath;
     // Start is called before the first frame update
     void Start()
     {
         currentHealth = maxHealth;
         resourceAmount = Random.Range(minResourceAmount, maxResourceAmount);
     }
+    //private void Update()
+    //{
+     //   if(aiPath.desiredVelocity.x >= 0.01f)
+     //   {
+     //       transform.localScale = new Vector3(-1f, 1f, 1f);
+      //  } else if (aiPath.desiredVelocity.x <= -0.01f)
+      //  {
+      //      transform.localScale = new Vector3(1f, 1f, 1f);
+     //   }
+    //}
 
     public void ReceiveDamage(int damage)
     {
