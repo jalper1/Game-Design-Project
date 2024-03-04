@@ -35,4 +35,20 @@ public class ResourceManage : MonoBehaviour
         Debug.Log("You have " + woodAmount + " of wood");
         Debug.Log("You have " + huskAmount + " of husk");
     }   
+    public int GetResourceTotal(ResourceType type)
+    {
+        if (type == ResourceType.Wood)
+        {
+            return woodAmount;
+        }
+        else if (type == ResourceType.Stone)
+        {
+            return stoneAmount;
+        }
+        else if (type == ResourceType.Husk)
+        {
+            return huskAmount;
+        }
+        return 0;
+    }
 }
