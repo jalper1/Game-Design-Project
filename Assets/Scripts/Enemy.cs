@@ -1,6 +1,8 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Vitals;
 using Pathfinding;
 
 public class Enemy : MonoBehaviour
@@ -12,12 +14,28 @@ public class Enemy : MonoBehaviour
     int resourceAmount = 0;
     public int maxResourceAmount = 50;
     public int minResourceAmount = 10;
+    private Health health; // health component
+    public GameObject healthBar;
+    public CanvasGroup thiefHealthBar; // healthBar's component
+
     //public AIPath aiPath;
     // Start is called before the first frame update
     void Start()
     {
         currentHealth = maxHealth;
         resourceAmount = Random.Range(minResourceAmount, maxResourceAmount);
+
+        healthBar = GameObject.Find("ThiefHealthBar");
+        if (healthBar == null)
+        {
+            Debug.Log("ThiefHealthBar GameObject not found.");
+        }
+    }
+
+    // sets up the Vitals Health Asset
+    private void Awake()
+    {
+        health = GetComponent<Health>();
     }
     //private void Update()
     //{
@@ -33,10 +51,27 @@ public class Enemy : MonoBehaviour
     public void ReceiveDamage(int damage)
     {
         currentHealth -= damage;
+        health.Decrease(40f);
         animator.SetTrigger("Hurt");
         if (currentHealth <= 0)
         {
             Die();
+            HideHealthBar(); // clear UI
+        }
+    }
+
+    private void HideHealthBar()
+    {
+        thiefHealthBar = healthBar.GetComponent<CanvasGroup>();
+        if (thiefHealthBar != null)
+        {
+            thiefHealthBar.alpha = 0f;
+            thiefHealthBar.interactable = false;
+            thiefHealthBar.blocksRaycasts = false;
+        }
+        else
+        {
+            Debug.Log("CanvasGroup component not found on ThiefHealthBar GameObject.");
         }
     }
 
