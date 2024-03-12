@@ -85,7 +85,7 @@ public class Combat : MonoBehaviour
             resourceManager.AddToResourceTotal(resourceGained.resourcesGained, resourceGained.type);
         }
 
-        playerCharacter.ConsumeStamina(15);
+        playerCharacter.ConsumeStamina(10);
     }
 
     void OnDrawGizmosSelected()

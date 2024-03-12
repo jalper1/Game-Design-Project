@@ -31,7 +31,7 @@ public class PlayerCharacter : MonoBehaviour
 
     public bool EnoughStaminaAttack()
     {
-        if (stamina.Value > 15)
+        if (stamina.Value > 10)
         {
             return true;
         }
