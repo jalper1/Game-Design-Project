@@ -24,8 +24,6 @@ public class Enemy : MonoBehaviour
     {
         currentHealth = maxHealth;
         resourceAmount = Random.Range(minResourceAmount, maxResourceAmount);
-
-        healthBar = GameObject.Find("ThiefHealthBar");
         if (healthBar == null)
         {
             Debug.Log("ThiefHealthBar GameObject not found.");
@@ -52,6 +50,7 @@ public class Enemy : MonoBehaviour
     {
         currentHealth -= damage;
         health.Decrease(40f);
+        Debug.Log("health: " + health.Value + health.name);
         animator.SetTrigger("Hurt");
         if (currentHealth <= 0)
         {

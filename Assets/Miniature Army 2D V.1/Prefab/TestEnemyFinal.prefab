@@ -890,7 +890,7 @@ MonoBehaviour:
   maxResourceAmount: 50
   minResourceAmount: 25
   healthBar: {fileID: 1547932570273680158}
-  thiefHealthBar: {fileID: 0}
+  thiefHealthBar: {fileID: 5931555033740482856}
 --- !u!114 &-4275377110285400056
 MonoBehaviour:
   m_ObjectHideFlags: 0
