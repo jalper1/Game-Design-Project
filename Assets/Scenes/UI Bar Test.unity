@@ -166,7 +166,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerResources: {fileID: 8229613}
-  coreLevel: 1
 --- !u!4 &8229615
 Transform:
   m_ObjectHideFlags: 0
@@ -584,8 +583,10 @@ MonoBehaviour:
   animateChanges: 1
   animationDuration: 0.5
   animationCurve:
+    serializedVersion: 2
     m_Curve:
-    - time: 0
+    - serializedVersion: 3
+      time: 0
       value: 0
       inSlope: 2
       outSlope: 2
@@ -593,7 +594,8 @@ MonoBehaviour:
       weightedMode: 0
       inWeight: 0
       outWeight: 0
-    - time: 1
+    - serializedVersion: 3
+      time: 1
       value: 1
       inSlope: 0
       outSlope: 0
@@ -956,6 +958,8 @@ MonoBehaviour:
   hitBox: {fileID: 892055191}
   maxResourceAmount: 50
   minResourceAmount: 10
+  healthBar: {fileID: 0}
+  thiefHealthBar: {fileID: 0}
 --- !u!58 &1107988160
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1004,12 +1008,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vitalsConfig: {fileID: 11400000, guid: 24a39eefa5bd0db48bebe0936de7f105, type: 2}
-  <Value>k__BackingField: 100
-  <MaxValue>k__BackingField: 100
   saveOnQuit: 0
   loadOnStart: 0
   vitalsHook: {fileID: 11400000, guid: c11bc2e487a8f8c4ba1081ff1aa46484, type: 2}
-  _regeneration: {fileID: 0}
 --- !u!1 &1198128195
 GameObject:
   m_ObjectHideFlags: 0
@@ -1635,8 +1636,10 @@ MonoBehaviour:
   animateChanges: 1
   animationDuration: 0.5
   animationCurve:
+    serializedVersion: 2
     m_Curve:
-    - time: 0
+    - serializedVersion: 3
+      time: 0
       value: 0
       inSlope: 2
       outSlope: 2
@@ -1644,7 +1647,8 @@ MonoBehaviour:
       weightedMode: 0
       inWeight: 0
       outWeight: 0
-    - time: 1
+    - serializedVersion: 3
+      time: 1
       value: 1
       inSlope: 0
       outSlope: 0
@@ -2036,6 +2040,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 2100306462}
+  resourceManager: {fileID: 0}
   harvestStrength: 10
   attackRate: 1.5
   nextAttackTime: 0
@@ -2203,12 +2208,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vitalsConfig: {fileID: 11400000, guid: e4f1ae9c8c83f3140a00a3bbe2c99de2, type: 2}
-  <Value>k__BackingField: 100
-  <MaxValue>k__BackingField: 100
   saveOnQuit: 0
   loadOnStart: 0
   vitalsHook: {fileID: 11400000, guid: d1a1facf8cfa18a479bf3060ec0c6090, type: 2}
-  _regeneration: {fileID: 0}
 --- !u!114 &2100306471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2222,12 +2224,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vitalsConfig: {fileID: 11400000, guid: db378c7120037d646af9ce83237da906, type: 2}
-  <Value>k__BackingField: 30
-  <MaxValue>k__BackingField: 30
   saveOnQuit: 0
   loadOnStart: 0
   vitalsHook: {fileID: 11400000, guid: 71cabdc1a11bdc8488af014fb578d544, type: 2}
-  _regeneration: {fileID: 0}
 --- !u!114 &2100306472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2240,8 +2239,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b04939a3d66f93e42a54ce7062427a59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: {fileID: 0}
-  stamina: {fileID: 0}
 --- !u!114 &2100306473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2254,11 +2251,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae1cdaac12cc4a659c35e6dc50e67cf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VitalsComponent: {fileID: 0}
   <RegenerationRate>k__BackingField: 5
-  <IsRegenerating>k__BackingField: 0
   <DrainRate>k__BackingField: 0
-  <IsDraining>k__BackingField: 0
   staminaComponent: {fileID: 2100306471}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

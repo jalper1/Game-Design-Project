@@ -17,6 +17,14 @@ public class Movement : MonoBehaviour
     public float dashRate = 2f;
     public float nextDashTime = 0f;
 
+    PlayerCharacter playerCharacter;
+    public bool canDash = true;
+
+    private void Start()
+    {
+        playerCharacter = GetComponent<PlayerCharacter>();
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -25,6 +33,14 @@ public class Movement : MonoBehaviour
         vertMove = Input.GetAxisRaw("Vertical") * (runSpeed / 4);
         animator.SetFloat("Speed", Mathf.Abs(horMove) + Mathf.Abs(vertMove));
 
+        if (playerCharacter.EnoughStaminaDash())
+        {
+            canDash = true;
+        }
+        else
+        {
+            canDash = false;
+        }
 
         if (!combat.IsAttacking() && Time.time >= nextDashTime)
         {
@@ -32,6 +48,8 @@ public class Movement : MonoBehaviour
             {
                 dash = true;
                 nextDashTime = Time.time + 1f / dashRate;
+
+                playerCharacter.ConsumeStamina(10);
             }
         }
     }
