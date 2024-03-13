@@ -463,6 +463,7 @@ Transform:
   m_Children:
   - {fileID: 6348615764810024740}
   - {fileID: 7562120149046510530}
+  - {fileID: 8075861254371854911}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &6432661556529053598
@@ -581,6 +582,11 @@ MonoBehaviour:
   animator: {fileID: 6432661556529053598}
   speed: 400
   nextWaypointDistance: 3
+  playerHitLayers:
+    serializedVersion: 2
+    m_Bits: 4096
+  attackPoint: {fileID: 8075861254371854911}
+  attackRange: 0.4
 --- !u!50 &5811005004854324739
 Rigidbody2D:
   serializedVersion: 4
@@ -946,6 +952,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &8062969300364564269
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8075861254371854911}
+  m_Layer: 6
+  m_Name: AttackPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8075861254371854911
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8062969300364564269}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.49, y: 0.55, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6348615764103651712}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8679401754942127770
 GameObject:
   m_ObjectHideFlags: 0
