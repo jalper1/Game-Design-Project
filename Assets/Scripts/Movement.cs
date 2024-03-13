@@ -33,13 +33,20 @@ public class Movement : MonoBehaviour
         vertMove = Input.GetAxisRaw("Vertical") * (runSpeed / 4);
         animator.SetFloat("Speed", Mathf.Abs(horMove) + Mathf.Abs(vertMove));
 
-        if (playerCharacter.EnoughStaminaDash())
+        if (playerCharacter != null )
         {
-            canDash = true;
+            if (playerCharacter.EnoughStaminaDash())
+            {
+                canDash = true;
+            }
+            else
+            {
+                canDash = false;
+            }
         }
         else
         {
-            canDash = false;
+            Debug.Log("PLAYER CHARACTER NOT INSTANTIATED");
         }
 
         if (!combat.IsAttacking() && Time.time >= nextDashTime)

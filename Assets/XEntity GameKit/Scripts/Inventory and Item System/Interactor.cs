@@ -34,21 +34,53 @@ namespace XEntity.InventoryItemSystem
             }
         }
 
-        //This method handles the interactable object detection, interaction trigger and the interaction event callbacks.
+        ////This method handles the interactable object detection, interaction trigger and the interaction event callbacks.
+        //private void HandleInteractions()
+        //{
+        //    Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+        //    RaycastHit hit;
+
+        //    if (interactionTarget?.gameObject != null) Utils.UnhighlightObject(interactionTarget.gameObject);
+
+        //    if (Physics.Raycast(ray, out hit) && InRange(hit.transform.position))
+        //    {
+        //        Debug.Log("IN RANGE CAUSE ITS A 3D OBJECT");
+        //        IInteractable target = hit.transform.GetComponent<IInteractable>();
+        //        if (target != null)
+        //        {
+        //            interactionTarget = new InteractionTarget(target, hit.transform.gameObject);
+        //            Utils.HighlightObject(interactionTarget.gameObject);
+        //        }
+        //        else interactionTarget = null;
+        //    }
+        //    else
+        //    {
+        //        interactionTarget = null;
+        //    }
+
+        //    if (Input.GetMouseButtonDown(0)) InitInteraction();
+        //}
+
+        ////This returns true if the target position is within the interaction range.
+        //private bool InRange(Vector3 targetPosition)
+        //{
+        //    return Vector3.Distance(targetPosition, transform.position) <= InteractionSettings.Current.interactionRange;
+        //}
+
+        // changed this to handle 2D interactions (asset uses 3D)
         private void HandleInteractions()
         {
-            Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
+            Vector3 mousePosition = Input.mousePosition;
+            Vector2 rayOrigin = mainCamera.ScreenToWorldPoint(mousePosition);
 
-            if (interactionTarget?.gameObject != null) Utils.UnhighlightObject(interactionTarget.gameObject);
+            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.zero);
 
-            if (Physics.Raycast(ray, out hit) && InRange(hit.transform.position))
+            if (hit.collider != null && InRange(hit.transform.position))
             {
                 IInteractable target = hit.transform.GetComponent<IInteractable>();
                 if (target != null)
                 {
                     interactionTarget = new InteractionTarget(target, hit.transform.gameObject);
-                    Utils.HighlightObject(interactionTarget.gameObject);
                 }
                 else interactionTarget = null;
             }
@@ -60,7 +92,7 @@ namespace XEntity.InventoryItemSystem
             if (Input.GetMouseButtonDown(0)) InitInteraction();
         }
 
-        //This returns true if the target position is within the interaction range.
+        // This returns true if the target position is within the interaction range.
         private bool InRange(Vector3 targetPosition)
         {
             return Vector3.Distance(targetPosition, transform.position) <= InteractionSettings.Current.interactionRange;
@@ -82,6 +114,19 @@ namespace XEntity.InventoryItemSystem
                 return true;
             }
             return false;
+        }
+
+        // for when game object doesn't need to be destroyed
+        public bool AddToInventory(Item item, int amount)
+        {
+            for (int i = 0; i < amount; i++)
+            {
+                if (!inventory.AddItem(item))
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
         internal class InteractionTarget 

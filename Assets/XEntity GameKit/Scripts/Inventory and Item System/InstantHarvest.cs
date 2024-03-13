@@ -10,10 +10,13 @@ namespace XEntity.InventoryItemSystem
 
         //The item that will be harvested on click.
         public Item harvestItem;
+        // amount of item to be added
+        public int amount;
 
         //The item is instantly added to the inventory of the interactor on interact.
         public void OnClickInteract(Interactor interactor)
         {
+            Debug.Log("ON CLICK INTERTACT");
             //Attempt to harvest if not harvested already
             AttemptHarvest(interactor);
         }
@@ -22,10 +25,11 @@ namespace XEntity.InventoryItemSystem
         {
             if (!isHarvested)
             {
-                if (harvestor.AddToInventory(harvestItem, gameObject))
+                for (int i = 0; i < amount; i++)
                 {
-                    isHarvested = true;
+                    harvestor.AddToInventory(harvestItem, gameObject);
                 }
+                isHarvested = true;
             }
         }
     }
