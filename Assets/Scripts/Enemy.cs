@@ -50,7 +50,9 @@ public class Enemy : MonoBehaviour
     {
         currentHealth -= damage;
         health.Decrease(40f);
-        Debug.Log("health: " + health.Value + health.name);
+        // update ui animation bar
+        VitalsUIBind bindComponent = healthBar.GetComponent<VitalsUIBind>();
+        bindComponent.UpdateImage(health.Value, health.MaxValue, false);
         animator.SetTrigger("Hurt");
         if (currentHealth <= 0)
         {

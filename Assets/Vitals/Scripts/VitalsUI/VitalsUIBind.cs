@@ -136,7 +136,7 @@ namespace Vitals
                                "Please make sure that " + vitalsHook.name + " is assigned to a Health/Stamina component.");
                 return;
             }
-            vitalsHook.OnValueChanged += _updateUI;
+            //vitalsHook.OnValueChanged += _updateUI;
         }
         
         private void OnDisable()
@@ -153,7 +153,7 @@ namespace Vitals
         /// Updates the UI Image element based on the VitalsHook data.
         /// This is automatically assigned to the delegate based on the UIType.
         /// </summary>
-        private void UpdateImage(float value, float maxvalue, bool isDrain)
+        public void UpdateImage(float value, float maxvalue, bool isDrain)
         {
             if (_animateCoroutine != null)
                 StopCoroutine(_animateCoroutine);
@@ -279,7 +279,7 @@ namespace Vitals
         public void Initialize(VitalsHook hook)
         {
             vitalsHook = hook;
-            vitalsHook.OnValueChanged += _updateUI;
+            //vitalsHook.OnValueChanged += _updateUI;
         }
 
         #endregion

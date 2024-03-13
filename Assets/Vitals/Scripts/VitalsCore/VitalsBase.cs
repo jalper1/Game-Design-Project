@@ -187,7 +187,7 @@ namespace Vitals
             
             if (Value >= MaxValue)
             {
-                Debug.Log("Value is already full.");
+//                Debug.Log("Value is already full.");
                 return;
             }
             
