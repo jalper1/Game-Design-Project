@@ -19,6 +19,7 @@ public class Enemy : MonoBehaviour
         currentHealth = maxHealth;
         resourceAmount = Random.Range(minResourceAmount, maxResourceAmount);
     }
+
     //private void Update()
     //{
      //   if(aiPath.desiredVelocity.x >= 0.01f)
