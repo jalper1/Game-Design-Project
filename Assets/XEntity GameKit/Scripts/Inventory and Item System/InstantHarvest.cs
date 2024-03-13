@@ -16,7 +16,6 @@ namespace XEntity.InventoryItemSystem
         //The item is instantly added to the inventory of the interactor on interact.
         public void OnClickInteract(Interactor interactor)
         {
-            Debug.Log("ON CLICK INTERTACT");
             //Attempt to harvest if not harvested already
             AttemptHarvest(interactor);
         }
