@@ -2520,6 +2520,7 @@ MonoBehaviour:
   dashRate: 1
   nextDashTime: 0
   canDash: 1
+  healthBar: {fileID: 0}
 --- !u!50 &2100306468
 Rigidbody2D:
   serializedVersion: 4
@@ -2608,8 +2609,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b04939a3d66f93e42a54ce7062427a59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: {fileID: 0}
-  stamina: {fileID: 0}
+  health: {fileID: 2100306470}
+  stamina: {fileID: 2100306471}
+  healthBar: {fileID: 642356834}
+  staminaBar: {fileID: 1793437093}
 --- !u!114 &2100306473
 MonoBehaviour:
   m_ObjectHideFlags: 0

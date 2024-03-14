@@ -488,6 +488,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 201170364}
   stamina: {fileID: 201170363}
+  healthBar: {fileID: 1914097595}
+  staminaBar: {fileID: 843816326}
 --- !u!114 &201170362
 MonoBehaviour:
   m_ObjectHideFlags: 0

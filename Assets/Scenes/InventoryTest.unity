@@ -1516,6 +1516,16 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1645637512}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1024645210 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6720252613552926679, guid: 13c470c5b8dcd4854834911f7e0a9a6c, type: 3}
+  m_PrefabInstance: {fileID: 365216977}
+  m_PrefabAsset: {fileID: 0}
+--- !u!225 &1024645212 stripped
+CanvasGroup:
+  m_CorrespondingSourceObject: {fileID: 2071120425585686220, guid: 13c470c5b8dcd4854834911f7e0a9a6c, type: 3}
+  m_PrefabInstance: {fileID: 365216977}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1070199959
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2128,8 +2138,8 @@ MonoBehaviour:
   hitBox: {fileID: 992723632}
   maxResourceAmount: 50
   minResourceAmount: 10
-  healthBar: {fileID: 0}
-  thiefHealthBar: {fileID: 0}
+  healthBar: {fileID: 1024645210}
+  thiefHealthBar: {fileID: 1024645212}
 --- !u!58 &1645637510
 CircleCollider2D:
   m_ObjectHideFlags: 0

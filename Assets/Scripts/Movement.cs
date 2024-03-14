@@ -1,6 +1,8 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
+using Vitals;
+using Input = UnityEngine.Input;
 
 public class Movement : MonoBehaviour
 {
@@ -49,7 +51,7 @@ public class Movement : MonoBehaviour
             Debug.Log("PLAYER CHARACTER NOT INSTANTIATED");
         }
 
-        if (!combat.IsAttacking() && Time.time >= nextDashTime)
+        if (!combat.IsAttacking() && Time.time >= nextDashTime && canDash)
         {
             if (Input.GetButtonDown("Dash"))
             {
@@ -57,6 +59,8 @@ public class Movement : MonoBehaviour
                 nextDashTime = Time.time + 1f / dashRate;
 
                 playerCharacter.ConsumeStamina(10);
+                VitalsUIBind bindComponent = playerCharacter.staminaBar.GetComponent<VitalsUIBind>();
+                bindComponent.UpdateImage(playerCharacter.stamina.Value, playerCharacter.stamina.MaxValue, false);
             }
         }
     }

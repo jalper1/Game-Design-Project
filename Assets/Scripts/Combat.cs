@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Vitals;
+using Input = UnityEngine.Input;
 
 public class Combat : MonoBehaviour
 {
@@ -34,9 +36,11 @@ public class Combat : MonoBehaviour
 
     void Update()
     {
+        //Debug.Log(playerCharacter.stamina.Value);
         if (playerCharacter.EnoughStaminaAttack())
         {
             canAttack = true;
+            
         }
         else
         {
@@ -86,6 +90,8 @@ public class Combat : MonoBehaviour
         }
 
         playerCharacter.ConsumeStamina(10);
+        VitalsUIBind bindComponent = playerCharacter.staminaBar.GetComponent<VitalsUIBind>();
+        bindComponent.UpdateImage(playerCharacter.stamina.Value, playerCharacter.stamina.MaxValue, false);
     }
 
     void OnDrawGizmosSelected()

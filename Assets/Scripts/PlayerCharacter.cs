@@ -9,6 +9,8 @@ public class PlayerCharacter : MonoBehaviour
 {
     public Health health;
     public Stamina stamina;
+    public GameObject healthBar;
+    public GameObject staminaBar;
 
     private void Awake()
     {
@@ -25,6 +27,8 @@ public class PlayerCharacter : MonoBehaviour
     void Update()
     {
         stamina.Regeneration.StartRegeneration();
+        VitalsUIBind bindComponent = staminaBar.GetComponent<VitalsUIBind>();
+        bindComponent.UpdateImage(stamina.Value, stamina.MaxValue, false);
     }
 
     public void ConsumeStamina(float amount) => stamina.Decrease(amount);
