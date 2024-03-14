@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Vitals;
+using Input = UnityEngine.Input;
 
 public class Combat : MonoBehaviour
 {
@@ -19,6 +21,9 @@ public class Combat : MonoBehaviour
     public int attackStrength = 40;
     public LayerMask resourceLayers;
 
+    PlayerCharacter playerCharacter;
+    public bool canAttack = true;
+
     public bool IsAttacking()
     {
         return isAttacking;
@@ -26,11 +31,23 @@ public class Combat : MonoBehaviour
     void Start()
     {
         resourceManager = GameManager.Instance.playerResources;
+        playerCharacter = GetComponent<PlayerCharacter>();
     }
 
     void Update()
     {
-        if (Time.time >= nextAttackTime) // Check if not attacking
+        //Debug.Log(playerCharacter.stamina.Value);
+        if (playerCharacter.EnoughStaminaAttack())
+        {
+            canAttack = true;
+            
+        }
+        else
+        {
+            canAttack = false;
+        }
+
+        if (Time.time >= nextAttackTime && canAttack) // Check if not attacking
         {
             if (Input.GetButtonDown("Attack"))
             {
@@ -38,7 +55,6 @@ public class Combat : MonoBehaviour
                 nextAttackTime = Time.time + 1f / attackRate;
             }
         }
-
     }
 
     private void FixedUpdate()
@@ -72,6 +88,10 @@ public class Combat : MonoBehaviour
             resourceGained = resource.transform.GetComponent<ResourceCalc>().CollectResource(harvestStrength);
             resourceManager.AddToResourceTotal(resourceGained.resourcesGained, resourceGained.type);
         }
+
+        playerCharacter.ConsumeStamina(10);
+        VitalsUIBind bindComponent = playerCharacter.staminaBar.GetComponent<VitalsUIBind>();
+        bindComponent.UpdateImage(playerCharacter.stamina.Value, playerCharacter.stamina.MaxValue, false);
     }
 
     void OnDrawGizmosSelected()

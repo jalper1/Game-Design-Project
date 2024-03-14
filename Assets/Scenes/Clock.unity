@@ -255,7 +255,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clockText: {fileID: 2138601007}
-  timeInADay: 86400
+  timeInADay: 43200
   timeScale: 2
 --- !u!4 &1342218024
 Transform:
@@ -372,10 +372,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 440099071}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 762, y: 419}
-  m_SizeDelta: {x: 367.941, y: 128.373}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -188, y: -71}
+  m_SizeDelta: {x: 367.94104, y: 128.37299}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2138601007
 MonoBehaviour:

@@ -1,0 +1,54 @@
+{
+    "name": "EnemyDemo",
+    "maps": [
+        {
+            "name": "EnemyDemo",
+            "id": "78ddd1c2-ccd6-4e53-89a9-17ccdf5fb448",
+            "actions": [
+                {
+                    "name": "Damage",
+                    "type": "Button",
+                    "id": "b73a59ee-73bf-4cdb-948b-6b5e52117323",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Tap",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Spawn",
+                    "type": "Button",
+                    "id": "a728650e-d6f1-4b97-9423-9e7ba52a7df9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Tap",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "0235d89f-190b-4912-85d0-ba5f683d1ff7",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Damage",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "588997c8-8c0e-4723-95c9-e8fec7c0b295",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Spawn",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
