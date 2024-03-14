@@ -461,8 +461,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b04939a3d66f93e42a54ce7062427a59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: {fileID: 0}
-  stamina: {fileID: 0}
+  health: {fileID: 98392133}
+  stamina: {fileID: 98392132}
+  healthBar: {fileID: 1584014319}
+  staminaBar: {fileID: 147491098}
 --- !u!114 &98392131
 MonoBehaviour:
   m_ObjectHideFlags: 0
