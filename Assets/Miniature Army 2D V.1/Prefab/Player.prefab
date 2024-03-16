@@ -785,6 +785,7 @@ GameObject:
   - component: {fileID: 321340890651772805}
   - component: {fileID: 2997460809075526496}
   - component: {fileID: 2938723571114065015}
+  - component: {fileID: 3075145854851800164}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -1085,3 +1086,17 @@ MonoBehaviour:
   stamina: {fileID: 321340890651772805}
   healthBar: {fileID: 0}
   staminaBar: {fileID: 0}
+--- !u!114 &3075145854851800164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7494209853969631819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b95cc55de8bd0414298605e880f3b734, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 0}
+  inventory: {fileID: 0}
