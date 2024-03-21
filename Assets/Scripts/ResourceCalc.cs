@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using XEntity.InventoryItemSystem;
 
 public enum ResourceType
 {
@@ -17,6 +18,8 @@ public struct Resource
 
 public class ResourceCalc : MonoBehaviour
 {
+    Interactor interactor;
+    public Item harvestItem;
 
     public int resourceAmount = 10;
     public ResourceType resourceType;
@@ -27,24 +30,23 @@ public class ResourceCalc : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        interactor = GetComponent<Interactor>();
         resourceAmount = Random.Range(minResource, maxResource);
     }
-    public Resource CollectResource(int amount)
+    public void CollectResource(int amount)
     {
         resource.type = resourceType;
         resourceAmount -= amount;
 
         if (resourceAmount <= 0)
         {
-            this.enabled = false;
-            GetComponent<Collider2D>().enabled = false;
-            GetComponent<SpriteRenderer>().enabled = false;
+            StartCoroutine(Utils.TweenScaleOut(gameObject, 40, true));
             resource.resourcesGained = amount + resourceAmount;
         }
         else
         {
             resource.resourcesGained = amount;
         }
-        return resource;
+        interactor.AddToInventory(harvestItem, resource.resourcesGained);
     }
 }
