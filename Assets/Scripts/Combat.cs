@@ -15,6 +15,7 @@ namespace Custom.Scripts
         private Resource resourceGained;
         private ResourceManage resourceManager;
         public int harvestStrength = 10;
+        private Item harvestItem;
 
         public float attackRate = 2f;
         public float nextAttackTime = 0f;
@@ -88,8 +89,8 @@ namespace Custom.Scripts
             }
             foreach (Collider2D resource in hitResources)
             {
-                resource.transform.GetComponent<ResourceCalc>().CollectResource(harvestStrength);
-                //resourceManager.AddToResourceTotal(resourceGained.resourcesGained, resourceGained.type);
+                (harvestItem, resourceGained.resourcesGained) = resource.transform.GetComponent<ResourceCalc>().CollectResource(harvestStrength);
+                resourceManager.AddToResourceTotal(resourceGained.resourcesGained, harvestItem.name);
             }
 
             playerCharacter.ConsumeStamina(10);

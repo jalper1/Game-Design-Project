@@ -19,17 +19,17 @@ namespace Custom.Scripts
             huskAmount = 0;
             GameManager.Instance.playerResources = this;
         }
-        public void AddToResourceTotal(int amount, ResourceType type)
+        public void AddToResourceTotal(int amount, string type)
         {
-            if (type == ResourceType.Wood)
+            if (type == "Wood")
             {
-                woodAmount += amount;
+                woodAmount += amount;                
             }
-            else if (type == ResourceType.Stone)
+            else if (type == "Stone")
             {
                 stoneAmount += amount;
             }
-            else if (type == ResourceType.Husk)
+            else if (type == "Husk")
             {
                 huskAmount += amount;
             }
@@ -37,17 +37,17 @@ namespace Custom.Scripts
             Debug.Log("You have " + woodAmount + " of wood");
             Debug.Log("You have " + huskAmount + " of husk");
         }
-        public int GetResourceTotal(ResourceType type)
+        public int GetResourceTotal(string type)
         {
-            if (type == ResourceType.Wood)
+            if (type == "Wood")
             {
                 return woodAmount;
             }
-            else if (type == ResourceType.Stone)
+            else if (type == "Stone")
             {
                 return stoneAmount;
             }
-            else if (type == ResourceType.Husk)
+            else if (type == "Husk")
             {
                 return huskAmount;
             }

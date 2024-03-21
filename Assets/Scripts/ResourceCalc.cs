@@ -3,16 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using XEntity.InventoryItemSystem;
 
-public enum ResourceType
-{
-    Wood,
-    Stone,
-    Husk
-}
-
 public struct Resource
 {
-    public ResourceType type;
+    public string type;
     public int resourcesGained;
 }
 
@@ -22,7 +15,7 @@ public class ResourceCalc : MonoBehaviour
     public Item harvestItem;
 
     public int resourceAmount = 10;
-    public ResourceType resourceType;
+    public string resourceType;
     private Resource resource;
     public int maxResource = 50;
     public int minResource = 25;
@@ -33,7 +26,7 @@ public class ResourceCalc : MonoBehaviour
         interactor = GetComponent<Interactor>();
         resourceAmount = Random.Range(minResource, maxResource);
     }
-    public void CollectResource(int amount)
+    public (Item, int) CollectResource(int amount)
     {
         resource.type = resourceType;
         resourceAmount -= amount;
@@ -48,5 +41,6 @@ public class ResourceCalc : MonoBehaviour
             resource.resourcesGained = amount;
         }
         interactor.AddToInventory(harvestItem, resource.resourcesGained);
+        return (harvestItem, resource.resourcesGained);
     }
 }

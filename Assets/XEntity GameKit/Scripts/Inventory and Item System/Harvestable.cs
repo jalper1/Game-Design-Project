@@ -14,7 +14,6 @@ namespace XEntity.InventoryItemSystem
         //This method is called when an interactor clicks on this object while being in range for an interaction.
         public void OnClickInteract(Interactor interactor)
         {
-            return;
             HP--;
             if (HP <= 0) Harvest(interactor);
         }

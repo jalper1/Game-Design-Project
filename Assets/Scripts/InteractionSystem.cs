@@ -23,13 +23,13 @@ namespace Custom.Scripts
                 switch (layerName)
                 {
                     case "CastleCore":
-                        if (GameManager.Instance.playerResources.GetResourceTotal(ResourceType.Wood) >= woodRequired && GameManager.Instance.playerResources.GetResourceTotal(ResourceType.Stone) >= stoneRequired && GameManager.Instance.playerResources.GetResourceTotal(ResourceType.Husk) >= huskRequired)
+                        if (GameManager.Instance.playerResources.GetResourceTotal("Wood") >= woodRequired && GameManager.Instance.playerResources.GetResourceTotal("Stone") >= stoneRequired && GameManager.Instance.playerResources.GetResourceTotal("Husk") >= huskRequired)
                         {
                             GameManager.Instance.IncreaseCoreLevel();
                             Debug.Log("Castle Core upgraded to Level " + GameManager.Instance.GetCoreLevel());
-                            GameManager.Instance.playerResources.AddToResourceTotal(-huskRequired, ResourceType.Husk);
-                            GameManager.Instance.playerResources.AddToResourceTotal(-woodRequired, ResourceType.Wood);
-                            GameManager.Instance.playerResources.AddToResourceTotal(-stoneRequired, ResourceType.Stone);
+                            GameManager.Instance.playerResources.AddToResourceTotal(-huskRequired, "Husk");
+                            GameManager.Instance.playerResources.AddToResourceTotal(-woodRequired, "Wood");
+                            GameManager.Instance.playerResources.AddToResourceTotal(-stoneRequired, "Stone");
                             huskRequired += 25;
                             woodRequired += 25;
                             stoneRequired += 25;

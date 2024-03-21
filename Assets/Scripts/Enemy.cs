@@ -71,7 +71,7 @@ namespace Custom.Scripts
         void Die()
         {
             animator.SetBool("IsDead", true);
-            GameManager.Instance.playerResources.AddToResourceTotal(resourceAmount, ResourceType.Husk);
+            GameManager.Instance.playerResources.AddToResourceTotal(resourceAmount, "Husk");
             GetComponent<Collider2D>().enabled = false;
             hitBox.enabled = false;
             this.enabled = false;
