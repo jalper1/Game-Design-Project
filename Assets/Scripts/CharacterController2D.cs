@@ -71,7 +71,7 @@ public class CharacterController2D : MonoBehaviour
         }
 
         // Apply a dash force in the calculated direction
-        Vector2 dashForce = dashDirection * m_DashForce * 100;
+        Vector2 dashForce = dashDirection * m_DashForce / 100;
         m_Rigidbody2D.AddForce(dashForce);
 
     }
