@@ -2,53 +2,56 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ResourceManage : MonoBehaviour
+namespace Custom.Scripts
 {
-    int woodAmount = 0;
-    int stoneAmount = 0;
-    int huskAmount = 0;
+    public class ResourceManage : MonoBehaviour
+    {
+        int woodAmount = 0;
+        int stoneAmount = 0;
+        int huskAmount = 0;
 
-    // use scriptable object to store resources
+        // use scriptable object to store resources
 
-    void Start()
-    {
-        woodAmount = 0;
-        stoneAmount = 0;
-        huskAmount = 0;
-        GameManager.Instance.playerResources = this;
-    }
-    public void AddToResourceTotal(int amount, ResourceType type)
-    {
-        if (type == ResourceType.Wood)
+        void Start()
         {
-            woodAmount += amount;
+            woodAmount = 0;
+            stoneAmount = 0;
+            huskAmount = 0;
+            GameManager.Instance.playerResources = this;
         }
-        else if (type == ResourceType.Stone)
+        public void AddToResourceTotal(int amount, string type)
         {
-            stoneAmount += amount;
+            if (type == "Wood")
+            {
+                woodAmount += amount;                
+            }
+            else if (type == "Stone")
+            {
+                stoneAmount += amount;
+            }
+            else if (type == "Husk")
+            {
+                huskAmount += amount;
+            }
+            Debug.Log("You have " + stoneAmount + " of stone");
+            Debug.Log("You have " + woodAmount + " of wood");
+            Debug.Log("You have " + huskAmount + " of husk");
         }
-        else if (type == ResourceType.Husk)
+        public int GetResourceTotal(string type)
         {
-            huskAmount += amount;
+            if (type == "Wood")
+            {
+                return woodAmount;
+            }
+            else if (type == "Stone")
+            {
+                return stoneAmount;
+            }
+            else if (type == "Husk")
+            {
+                return huskAmount;
+            }
+            return 0;
         }
-        Debug.Log("You have " + stoneAmount + " of stone");
-        Debug.Log("You have " + woodAmount + " of wood");
-        Debug.Log("You have " + huskAmount + " of husk");
-    }   
-    public int GetResourceTotal(ResourceType type)
-    {
-        if (type == ResourceType.Wood)
-        {
-            return woodAmount;
-        }
-        else if (type == ResourceType.Stone)
-        {
-            return stoneAmount;
-        }
-        else if (type == ResourceType.Husk)
-        {
-            return huskAmount;
-        }
-        return 0;
     }
 }

@@ -1,44 +1,50 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using XEntity.InventoryItemSystem;
 
-public class GameManager : MonoBehaviour
+namespace Custom.Scripts
 {
-    private static GameManager _instance;
-    public ResourceManage playerResources;
-    public int coreLevel = 1;
-
-    // doing something don't interrupt
-    public static GameManager Instance
+    public class GameManager : MonoBehaviour
     {
-        get
+        private static GameManager _instance;
+        public ResourceManage playerResources;
+        public ItemManager itemManager;
+        public int coreLevel = 1;
+
+        // doing something don't interrupt
+        public static GameManager Instance
+        {
+            get
+            {
+                if (_instance == null)
+                    Debug.LogError("Game Manager is null");
+
+                return _instance;
+            }
+
+        }
+
+        private void Awake()
         {
             if (_instance == null)
-                Debug.LogError("Game Manager is null");
-
-            return _instance;
+            {
+                _instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
 
-    }
-
-    private void Awake()
-    {
-        if (_instance == null)
+        public void IncreaseCoreLevel()
         {
-            _instance = this;
-            DontDestroyOnLoad(gameObject);
+            coreLevel++;
         }
-        else
+        public int GetCoreLevel()
         {
-            Destroy(gameObject);
+            return coreLevel;
         }
-    }
-
-    public void IncreaseCoreLevel()
-    {
-        coreLevel++;
-    }
-    public int GetCoreLevel()
-    {
-        return coreLevel;
     }
 }

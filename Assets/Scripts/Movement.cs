@@ -4,74 +4,77 @@ using UnityEngine.Events;
 using Vitals;
 using Input = UnityEngine.Input;
 
-public class Movement : MonoBehaviour
+namespace Custom.Scripts
 {
-    public CharacterController2D controller;
-    public Animator animator;
-    public Combat combat; // Reference to the Combat script
-
-    float horMove = 0f;
-    float vertMove = 0f;
-    public float runSpeed = 40f;
-
-    bool dash = false;
-
-    public float dashRate = 2f;
-    public float nextDashTime = 0f;
-
-    PlayerCharacter playerCharacter;
-    public bool canDash = true;
-
-    private void Start()
+    public class Movement : MonoBehaviour
     {
-        playerCharacter = GetComponent<PlayerCharacter>();
-    }
+        public CharacterController2D controller;
+        public Animator animator;
+        public Combat combat; // Reference to the Combat script
 
-    // Update is called once per frame
-    void Update()
-    {
+        float horMove = 0f;
+        float vertMove = 0f;
+        public float runSpeed = 40f;
 
-        horMove = Input.GetAxisRaw("Horizontal") * (runSpeed / 4);
-        vertMove = Input.GetAxisRaw("Vertical") * (runSpeed / 4);
-        animator.SetFloat("Speed", Mathf.Abs(horMove) + Mathf.Abs(vertMove));
+        bool dash = false;
 
-        if (playerCharacter != null )
+        public float dashRate = 2f;
+        public float nextDashTime = 0f;
+
+        PlayerCharacter playerCharacter;
+        public bool canDash = true;
+
+        private void Start()
         {
-            if (playerCharacter.EnoughStaminaDash())
+            playerCharacter = GetComponent<PlayerCharacter>();
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+
+            horMove = Input.GetAxisRaw("Horizontal") * (runSpeed / 4);
+            vertMove = Input.GetAxisRaw("Vertical") * (runSpeed / 4);
+            animator.SetFloat("Speed", Mathf.Abs(horMove) + Mathf.Abs(vertMove));
+
+            if (playerCharacter != null)
             {
-                canDash = true;
+                if (playerCharacter.EnoughStaminaDash())
+                {
+                    canDash = true;
+                }
+                else
+                {
+                    canDash = false;
+                }
             }
             else
             {
-                canDash = false;
+                Debug.Log("PLAYER CHARACTER NOT INSTANTIATED");
             }
-        }
-        else
-        {
-            Debug.Log("PLAYER CHARACTER NOT INSTANTIATED");
-        }
 
-        if (!combat.IsAttacking() && Time.time >= nextDashTime && canDash)
-        {
-            if (Input.GetButtonDown("Dash"))
+            if (!combat.IsAttacking() && Time.time >= nextDashTime && canDash)
             {
-                dash = true;
-                nextDashTime = Time.time + 1f / dashRate;
+                if (Input.GetButtonDown("Dash"))
+                {
+                    dash = true;
+                    nextDashTime = Time.time + 1f / dashRate;
 
-                playerCharacter.ConsumeStamina(10);
-                VitalsUIBind bindComponent = playerCharacter.staminaBar.GetComponent<VitalsUIBind>();
-                bindComponent.UpdateImage(playerCharacter.stamina.Value, playerCharacter.stamina.MaxValue, false);
+                    playerCharacter.ConsumeStamina(10);
+                    VitalsUIBind bindComponent = playerCharacter.staminaBar.GetComponent<VitalsUIBind>();
+                    bindComponent.UpdateImage(playerCharacter.stamina.Value, playerCharacter.stamina.MaxValue, false);
+                }
             }
         }
-    }
 
-    private void FixedUpdate()
-    {
-        if (combat.IsAttacking()) // Check if not attacking
+        private void FixedUpdate()
         {
-            horMove = 0f; vertMove = 0f; // Reset movement if attacking
+            if (combat.IsAttacking()) // Check if not attacking
+            {
+                horMove = 0f; vertMove = 0f; // Reset movement if attacking
+            }
+            controller.Move(horMove, vertMove, dash);
+            dash = false;
         }
-        controller.Move(horMove, vertMove, dash);
-        dash = false;
     }
 }

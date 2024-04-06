@@ -7,7 +7,7 @@ namespace XEntity.InventoryItemSystem
     public class Interactor : MonoBehaviour
     {
         //Reference to the main game viewing camera.
-        [SerializeField] private Camera mainCamera;
+        private Camera mainCamera;
 
         //Reference to the item container thats dedicated to this interactor.
         public ItemContainer inventory;
@@ -19,6 +19,10 @@ namespace XEntity.InventoryItemSystem
         //This is the position at which dropped items will be instantiated (in front of this interactor).
         public Vector3 ItemDropPosition { get { return transform.position + transform.forward; } }
 
+        private void Start()
+        {
+            mainCamera = Camera.main;
+        }
         //Called every frame after the game is started.
         private void Update()
         {
