@@ -1,3 +1,4 @@
+using Custom.Scripts;
 using Pathfinding;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,13 +13,16 @@ public class EnemyAI : MonoBehaviour
     public float nextWaypointDistance = 3f;
 
     public LayerMask playerHitLayers;
-    public Transform attackPoint;
-    public float attackRange = 0.5f;
 
     Path path;
     int currentWaypoint = 0;
     bool reachedEndOfPath = false;
     bool isAttacking = false; // Flag to track if enemy is attacking
+
+    public Transform attackPoint;
+    public float attackRange = 0.5f;
+    public LayerMask hitLayers;
+    public int attackStrength = 40;
 
     Seeker seeker;
     Rigidbody2D rb;
@@ -76,7 +80,20 @@ public class EnemyAI : MonoBehaviour
 
         // Wait for the duration of attack animation
         yield return new WaitForSeconds(animator.GetCurrentAnimatorClipInfo(0).Length);
+        EnemyAttackHit();
         isAttacking = false;
+    }
+
+    private void EnemyAttackHit()
+    {
+        Collider2D hitPlayer = Physics2D.OverlapCircle(attackPoint.position, attackRange, hitLayers);
+
+        if (hitPlayer != null)
+        {
+            Debug.Log("Player hit");
+            hitPlayer.transform.root.GetComponent<Combat>().ReceiveDamage(attackStrength);
+        }
+
     }
 
     // Update is called once per frame
@@ -137,6 +154,6 @@ public class EnemyAI : MonoBehaviour
     {
         if (attackPoint == null)
             return;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 }

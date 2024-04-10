@@ -10,6 +10,11 @@ namespace Custom.Scripts
     public class Combat : MonoBehaviour
     {
         public Animator animator;
+        public int maxHealth = 100;
+        int currentHealth;
+        private Health health; // health component
+        public GameObject healthBar;
+        public CanvasGroup thiefHealthBar; // healthBar's component
 
         private bool isAttacking = false; // New variable to track attack state
         private Resource resourceGained;
@@ -96,6 +101,20 @@ namespace Custom.Scripts
             playerCharacter.ConsumeStamina(10);
             VitalsUIBind bindComponent = playerCharacter.staminaBar.GetComponent<VitalsUIBind>();
             bindComponent.UpdateImage(playerCharacter.stamina.Value, playerCharacter.stamina.MaxValue, false);
+        }
+
+        public void ReceiveDamage(int damage)
+        {
+            currentHealth -= damage;
+            health.Decrease(40f);
+            // update ui animation bar
+            VitalsUIBind bindComponent = healthBar.GetComponent<VitalsUIBind>();
+            bindComponent.UpdateImage(health.Value, health.MaxValue, false);
+            animator.SetTrigger("Hurt");
+            if (currentHealth <= 0)
+            {
+                Debug.Log("Player died");
+            }
         }
 
         void OnDrawGizmosSelected()
