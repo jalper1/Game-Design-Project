@@ -34,8 +34,6 @@ namespace XEntity.InventoryItemSystem
             }
             #endregion
 
-            //Any code in awake should be after the singleton evaluation
-
         }
 
         //This function is called when the Use Item button is clicked from one of the inventory items.
