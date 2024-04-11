@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 1742616426712560863}
   - component: {fileID: 3523362733704978306}
   - component: {fileID: 9059505239264008160}
+  - component: {fileID: 2331410909565033390}
+  - component: {fileID: 2400464124118384910}
   m_Layer: 0
   m_Name: MediumRock1
   m_TagString: Untagged
@@ -140,3 +142,33 @@ PolygonCollider2D:
       - {x: 1.1949999, y: -0.099999994}
       - {x: 1.045, y: 0.45999998}
   m_UseDelaunayMesh: 0
+--- !u!114 &2331410909565033390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 904991775918369736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b95cc55de8bd0414298605e880f3b734, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory: {fileID: 0}
+--- !u!114 &2400464124118384910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 904991775918369736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8577da5d19f6744fb5b3d469d33c85f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  harvestItem: {fileID: 11400000, guid: 8ca26c4a40ea3864eaab9f582b93a787, type: 2}
+  resourceAmount: 10
+  resourceType: Stone
+  maxResource: 50
+  minResource: 25

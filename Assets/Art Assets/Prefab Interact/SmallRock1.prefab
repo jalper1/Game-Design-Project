@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 494433900355972317}
   - component: {fileID: 5378490101380622572}
   - component: {fileID: 5920500085194166249}
+  - component: {fileID: 3016580732788951161}
+  - component: {fileID: 310390749368096840}
   m_Layer: 0
   m_Name: SmallRock1
   m_TagString: Untagged
@@ -140,3 +142,33 @@ PolygonCollider2D:
       - {x: 0.585, y: -0.089999996}
       - {x: 0.445, y: -0.22999999}
   m_UseDelaunayMesh: 0
+--- !u!114 &3016580732788951161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2928524190862892164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b95cc55de8bd0414298605e880f3b734, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory: {fileID: 0}
+--- !u!114 &310390749368096840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2928524190862892164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8577da5d19f6744fb5b3d469d33c85f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  harvestItem: {fileID: 11400000, guid: 8ca26c4a40ea3864eaab9f582b93a787, type: 2}
+  resourceAmount: 10
+  resourceType: Stone
+  maxResource: 50
+  minResource: 25
