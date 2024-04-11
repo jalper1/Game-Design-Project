@@ -8,7 +8,7 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Scene Transition
   - Water
   - UI
   - Enemy
@@ -18,7 +18,7 @@ TagManager:
   - Item
   - CastleCore
   - Player Hitzone
-  - 
+  - Background
   - 
   - 
   - 
@@ -55,4 +55,7 @@ TagManager:
     locked: 0
   - name: Foreground
     uniqueID: 3482435079
+    locked: 0
+  - name: Scene Transition
+    uniqueID: 4001258035
     locked: 0
