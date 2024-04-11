@@ -24,7 +24,7 @@ public class ResourceCalc : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        itemList = Custom.Scripts.GameManager.Instance.itemManager.itemList;
+        itemList = new List<Item>();
         interactor = GetComponent<Interactor>();
         resourceAmount = Random.Range(minResource, maxResource);
     }
