@@ -36,6 +36,7 @@ public class ResourceCalc : MonoBehaviour
         if (resourceAmount <= 0)
         {
             StartCoroutine(Utils.TweenScaleOut(gameObject, 40, true));
+            if (harvestItem.name == "Wood") { StartCoroutine(Utils.TweenScaleOut(gameObject.transform.parent.gameObject, 40, true)); }
             resource.resourcesGained = amount + resourceAmount;
         }
         else
