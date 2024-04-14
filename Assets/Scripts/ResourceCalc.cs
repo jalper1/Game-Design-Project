@@ -42,7 +42,12 @@ public class ResourceCalc : MonoBehaviour
             resource.resourcesGained = amount;
         }
         interactor.AddToInventory(harvestItem, resource.resourcesGained);
-        ItemManager.Instance.itemList.Add(harvestItem);
+        
+        for (int i = 0; i < resource.resourcesGained; i++)
+        {
+            ItemManager.Instance.itemList.Add(harvestItem);
+        }
+
         return (harvestItem, resource.resourcesGained);
     }
 }
