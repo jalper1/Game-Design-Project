@@ -1,136 +1,92 @@
-using Pathfinding;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.AI;
+using UnityEngine.UI;
+using Vitals;
 
 public class EnemyAI : MonoBehaviour
 {
     public Animator animator;
 
     private Transform target;
-    public float speed = 5f;
-    public float nextWaypointDistance = 3f;
+    NavMeshAgent agent;
 
     public LayerMask playerHitLayers;
     public Transform attackPoint;
     public float attackRange = 0.5f;
+    public float attackStrength = 10f;
+    float newHealth;
 
-    Path path;
-    int currentWaypoint = 0;
-    bool reachedEndOfPath = false;
     bool isAttacking = false; // Flag to track if enemy is attacking
 
-    Seeker seeker;
-    Rigidbody2D rb;
+    PlayerCharacter playerCharacter;
 
     // Start is called before the first frame update
     void Start()
     {
         target = GameObject.Find("Player").transform;
-        seeker = GetComponent<Seeker>();
-        rb = GetComponent<Rigidbody2D>();
-
-        InvokeRepeating("UpdatePath", 0f, 0.5f);
-    }
-
-    void UpdatePath()
-    {
-        if (seeker.IsDone() && !animator.GetCurrentAnimatorStateInfo(0).IsName("die"))
-        {
-            seeker.StartPath(rb.position, target.position, OnPathComplete);
-        }
-    }
-
-    void OnPathComplete(Path p)
-    {
-        if (!p.error)
-        {
-            path = p;
-            currentWaypoint = 0;
-        }
+        playerCharacter = target.GetComponent<PlayerCharacter>();
+        agent = GetComponent<NavMeshAgent>();
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
     }
 
     private void Update()
     {
-        if (!isAttacking && !animator.GetCurrentAnimatorStateInfo(0).IsName("die")) // Only check for player range if not already attacking
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("die"))
         {
-            Collider2D playerZone = Physics2D.OverlapCircle(transform.position, attackRange, playerHitLayers);
+            agent.isStopped = true;
+            return;
+        }
+        agent.SetDestination(target.position);
+        if (agent.velocity.x > 0)
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
+        else if (agent.velocity.x < 0)
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+        }
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("idle"))
+        {
 
-            if (playerZone != null)
+        }
+
+        Collider2D playerZone = Physics2D.OverlapCircle(transform.position, attackRange, playerHitLayers);
+        if (playerZone != null)
+        {
+            animator.SetFloat("Speed", 0);
+            agent.isStopped = true;
+
+            if (!isAttacking && !animator.GetCurrentAnimatorStateInfo(0).IsName("die")) // Only check for player range if not already attacking
             {
-                animator.SetFloat("Speed", 0);
-                Debug.Log("Player in range");
-                StartCoroutine(AttackCoroutine());
+                Attack();
             }
-            else
-            {
-                animator.SetFloat("Speed", Mathf.Abs(rb.velocity.x) + Mathf.Abs(rb.velocity.y));
-            }
-        }
-    }
-
-    IEnumerator AttackCoroutine()
-    {
-        isAttacking = true;
-        animator.SetTrigger("Attack");
-
-        // Wait for the duration of attack animation
-        yield return new WaitForSeconds(animator.GetCurrentAnimatorClipInfo(0).Length);
-        isAttacking = false;
-    }
-
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("hurt") || animator.GetCurrentAnimatorStateInfo(0).IsName("attack1"))
-        {
-            rb.velocity = Vector2.zero;
-            return;
-        }
-
-        if (!isAttacking)
-        {
-            MoveTowardsPlayer();
-        }
-    }
-
-    void MoveTowardsPlayer()
-    {
-        if (path == null)
-        {
-            return;
-        }
-
-        if (currentWaypoint >= path.vectorPath.Count)
-        {
-            reachedEndOfPath = true;
-            return;
         }
         else
         {
-            reachedEndOfPath = false;
+            agent.isStopped = false;
+            animator.SetFloat("Speed", agent.velocity.magnitude);
         }
+    }
 
-        Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
-        Vector2 force = direction * speed * Time.deltaTime;
+    private async void FinishAttack()
+    {
+        playerCharacter.health.Decrease(attackStrength);
+        VitalsUIBind bindComponent = playerCharacter.healthBar.GetComponent<VitalsUIBind>();
+        bindComponent.UpdateImage(playerCharacter.health.Value, playerCharacter.health.MaxValue, false);
+        RespawnManager.Instance.playerLife = (int)playerCharacter.health.Value;
+        await Task.Delay(1000);
+        isAttacking = false;
+    }
 
-        rb.AddForce(force);
-
-        float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
-
-        if (distance < nextWaypointDistance)
-        {
-            currentWaypoint++;
-        }
-
-        if (force.x >= 0.01f)
-        {
-            transform.localScale = new Vector3(-1f, 1f, 1f);
-        }
-        else if (force.x <= -0.01f)
-        {
-            transform.localScale = new Vector3(1f, 1f, 1f);
-        }
+    void Attack()
+    {
+        isAttacking = true;
+        animator.SetTrigger("Attack");
+        FinishAttack();
     }
 
     void OnDrawGizmosSelected()
