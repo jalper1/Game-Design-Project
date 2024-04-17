@@ -13,7 +13,6 @@ public class ResourceCalc : MonoBehaviour
 {
     Interactor interactor;
     public Item harvestItem;
-    private List<Item> itemList;
 
     public int resourceAmount = 10;
     public string resourceType;
@@ -24,7 +23,6 @@ public class ResourceCalc : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        itemList = new List<Item>();
         interactor = GetComponent<Interactor>();
         resourceAmount = Random.Range(minResource, maxResource);
     }
@@ -44,7 +42,12 @@ public class ResourceCalc : MonoBehaviour
             resource.resourcesGained = amount;
         }
         interactor.AddToInventory(harvestItem, resource.resourcesGained);
-        itemList.Add(harvestItem);
+        
+        for (int i = 0; i < resource.resourcesGained; i++)
+        {
+            ItemManager.Instance.itemList.Add(harvestItem);
+        }
+
         return (harvestItem, resource.resourcesGained);
     }
 }

@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using XEntity.InventoryItemSystem;
 
 namespace Custom.Scripts
@@ -9,7 +8,6 @@ namespace Custom.Scripts
     {
         private static GameManager _instance;
         public ResourceManage playerResources;
-        public ItemManager itemManager;
         public int coreLevel = 1;
 
         // doing something don't interrupt
@@ -46,5 +44,6 @@ namespace Custom.Scripts
         {
             return coreLevel;
         }
+
     }
 }
