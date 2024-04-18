@@ -100,8 +100,7 @@ public class RespawnManager : MonoBehaviour
 
         if (respawn)
         {
-            Task.Delay(3000);
-            SceneManager.LoadScene(3);
+            SceneManager.LoadScene(1);
             ItemManager.Instance.itemList.Clear();
         }
     }

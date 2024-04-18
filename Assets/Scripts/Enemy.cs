@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Vitals;
+using XEntity.InventoryItemSystem;
 
 namespace Custom.Scripts
 {
@@ -19,10 +20,17 @@ namespace Custom.Scripts
         public GameObject healthBar;
         public CanvasGroup thiefHealthBar; // healthBar's component
 
-        //public AIPath aiPath;
+        private ResourceManage resourceManager;
+        public int harvestStrength = 10;
+        private Item harvestItem;
+        Resource resourceGained;
+        Interactor interactor;
+
         // Start is called before the first frame update
         void Start()
         {
+            interactor = GetComponent<Interactor>();
+            resourceManager = GameManager.Instance.playerResources;
             currentHealth = maxHealth;
             resourceAmount = Random.Range(minResourceAmount, maxResourceAmount);
             if (healthBar == null)
@@ -70,10 +78,11 @@ namespace Custom.Scripts
         void Die()
         {
             animator.SetBool("IsDead", true);
-            GameManager.Instance.playerResources.AddToResourceTotal(resourceAmount, "Husk");
             GetComponent<Collider2D>().enabled = false;
             hitBox.enabled = false;
             this.enabled = false;
+            (harvestItem, resourceGained.resourcesGained) = transform.GetComponent<ResourceCalc>().CollectResource(harvestStrength);
+            resourceManager.AddToResourceTotal(resourceGained.resourcesGained, harvestItem.name);
         }
 
     }
