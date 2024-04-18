@@ -18,6 +18,7 @@ public class EnemyAI : MonoBehaviour
     public float attackRange = 0.5f;
     public float attackStrength = 10f;
     float newHealth;
+    Collider2D playerZone;
 
     bool isAttacking = false; // Flag to track if enemy is attacking
 
@@ -54,7 +55,7 @@ public class EnemyAI : MonoBehaviour
 
         }
 
-        Collider2D playerZone = Physics2D.OverlapCircle(transform.position, attackRange, playerHitLayers);
+        playerZone = Physics2D.OverlapCircle(transform.position, attackRange, playerHitLayers);
         if (playerZone != null)
         {
             animator.SetFloat("Speed", 0);
@@ -80,13 +81,18 @@ public class EnemyAI : MonoBehaviour
         RespawnManager.Instance.playerLife = (int)playerCharacter.health.Value;
         await Task.Delay(1000);
         isAttacking = false;
+        agent.isStopped = false;
     }
 
     void Attack()
     {
         isAttacking = true;
         animator.SetTrigger("Attack");
-        FinishAttack();
+        playerZone = Physics2D.OverlapCircle(transform.position, attackRange, playerHitLayers);
+        if (playerZone != null)
+        {
+            FinishAttack();
+        }
     }
 
     void OnDrawGizmosSelected()
