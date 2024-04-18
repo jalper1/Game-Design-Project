@@ -59,6 +59,10 @@ namespace Custom.Scripts
                     nextAttackTime = Time.time + 1f / attackRate;
                 }
             }
+            if(playerCharacter.health.Value <= 0)
+            {
+                animator.SetTrigger("Death");
+            }
         }
 
         private void FixedUpdate()

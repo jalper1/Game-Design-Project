@@ -72,7 +72,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 5259394724050586671}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 0609881f30dd96e47823b5d23c3f3bf3, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -95,7 +95,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.669255}
+  m_Offset: {x: 0, y: 0.81690943}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -106,7 +106,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.6918144, y: 2.3385105}
+  m_Size: {x: 1.6918144, y: 1.5458395}
   m_EdgeRadius: 0
 --- !u!1 &5337123468475635239
 GameObject:
@@ -845,7 +845,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 902d9b436c5c8714ca8efbba8f318e0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_DashForce: 0.004
+  m_DashForce: 1000
   m_MovementSmoothing: 0.05
   OnLandEvent:
     m_PersistentCalls:
@@ -865,7 +865,7 @@ MonoBehaviour:
   controller: {fileID: 6712053410084243318}
   animator: {fileID: 7589347843042509261}
   combat: {fileID: 6108748095255602988}
-  runSpeed: 2.5
+  runSpeed: 2.3
   dashRate: 1
   nextDashTime: 0
   canDash: 1

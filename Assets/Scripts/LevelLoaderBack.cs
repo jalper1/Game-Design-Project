@@ -9,6 +9,8 @@ public class LevelLoaderBack : MonoBehaviour
 
     private bool playerEnteredTrigger = false;
 
+    private GameObject player;
+
     // Detect when the player enters the trigger collider
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -31,6 +33,7 @@ public class LevelLoaderBack : MonoBehaviour
     // Load the next level
     public void LoadNextLevel()
     {
+        RespawnManager.Instance.transition = true;
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         StartCoroutine(LoadLevel(currentSceneIndex - 1));
     }
@@ -41,5 +44,8 @@ public class LevelLoaderBack : MonoBehaviour
         transition.SetTrigger("Start");
         yield return new WaitForSeconds(transitionTime);
         SceneManager.LoadScene(levelIndex);
+        player = GameObject.Find("Player");
+        player.transform.localScale = new Vector3(-1, 1, 1);
+
     }
 }

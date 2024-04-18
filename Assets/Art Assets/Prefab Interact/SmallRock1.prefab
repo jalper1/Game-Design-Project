@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5920500085194166249}
   - component: {fileID: 3016580732788951161}
   - component: {fileID: 310390749368096840}
+  - component: {fileID: 9111520606754373698}
   m_Layer: 0
   m_Name: SmallRock1
   m_TagString: Untagged
@@ -172,3 +173,19 @@ MonoBehaviour:
   resourceType: Stone
   maxResource: 50
   minResource: 25
+--- !u!114 &9111520606754373698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2928524190862892164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
