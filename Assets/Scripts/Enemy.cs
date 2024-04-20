@@ -22,7 +22,7 @@ namespace Custom.Scripts
 
         private ResourceManage resourceManager;
         public int harvestStrength = 10;
-        private Item harvestItem;
+        public Item harvestItem;
         Resource resourceGained;
         Interactor interactor;
 
@@ -81,8 +81,38 @@ namespace Custom.Scripts
             GetComponent<Collider2D>().enabled = false;
             hitBox.enabled = false;
             this.enabled = false;
-            (harvestItem, resourceGained.resourcesGained) = transform.GetComponent<ResourceCalc>().CollectResource(harvestStrength);
-            resourceManager.AddToResourceTotal(resourceGained.resourcesGained, harvestItem.name);
+            //(harvestItem, resourceGained.resourcesGained) = transform.GetComponent<ResourceCalc>().CollectResource(harvestStrength);
+            //resourceManager.AddToResourceTotal(resourceGained.resourcesGained, harvestItem.name);
+
+
+            // jen's changes
+            // get the itemList and add the husk item to it
+            ItemContainer itemContainer;
+            List<Item> itemList = ItemManager.Instance.itemList;
+            //Item husk = new Item();
+            itemList.Add(harvestItem);
+
+            // Find the "Player Inventory" GameObject
+            GameObject playerInventory = GameObject.Find("Player Inventory");
+
+            if (playerInventory != null)
+            {
+                // Get the ItemContainer component
+                itemContainer = playerInventory.GetComponent<ItemContainer>();
+
+                if (itemContainer != null)
+                {
+                    itemContainer.populateInv();
+                }
+                else
+                {
+                    Debug.LogError("ItemContainer component not found on 'Player Inventory' GameObject.");
+                }
+            }
+            else
+            {
+                Debug.LogError("GameObject 'Player Inventory' not found.");
+            }
         }
 
     }
