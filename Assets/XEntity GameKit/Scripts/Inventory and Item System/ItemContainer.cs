@@ -71,6 +71,17 @@ namespace XEntity.InventoryItemSystem
             }
         }
 
+        public void clearInv()
+        {
+            if (slots == null)
+                return; // Check for null slots to avoid null reference errors
+
+            foreach (ItemSlot slot in slots)
+            {
+                slot.Clear(); // Clear each slot's item and reset its state
+            }
+        }
+
         public void populateInv()
         {
             // jen's changes
