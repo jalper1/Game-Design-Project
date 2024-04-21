@@ -95,6 +95,7 @@ namespace Custom.Scripts
             {
                 (harvestItem, resourceGained.resourcesGained) = resource.transform.GetComponent<ResourceCalc>().CollectResource(harvestStrength);
                 resourceManager.AddToResourceTotal(resourceGained.resourcesGained, harvestItem.name);
+
             }
 
             playerCharacter.ConsumeStamina(10);

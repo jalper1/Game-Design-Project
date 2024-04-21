@@ -926,6 +926,7 @@ MonoBehaviour:
   healthBar: {fileID: 1547932570273680158}
   thiefHealthBar: {fileID: 5931555033740482856}
   harvestStrength: 10
+  harvestItem: {fileID: 11400000, guid: fb2e3ac08b0fb21418730258ea516b30, type: 2}
 --- !u!114 &2123882766717268577
 MonoBehaviour:
   m_ObjectHideFlags: 0
