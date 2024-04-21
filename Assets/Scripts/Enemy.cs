@@ -84,17 +84,13 @@ namespace Custom.Scripts
             //(harvestItem, resourceGained.resourcesGained) = transform.GetComponent<ResourceCalc>().CollectResource(harvestStrength);
             //resourceManager.AddToResourceTotal(resourceGained.resourcesGained, harvestItem.name);
 
-
             // jen's changes
             // get the itemList and add the husk item to it
             ItemContainer itemContainer;
             List<Item> itemList = ItemManager.Instance.itemList;
-            //Item husk = new Item();
             itemList.Add(harvestItem);
 
-            // Find the "Player Inventory" GameObject
             GameObject playerInventory = GameObject.Find("Player Inventory");
-
             if (playerInventory != null)
             {
                 // Get the ItemContainer component
@@ -102,6 +98,7 @@ namespace Custom.Scripts
 
                 if (itemContainer != null)
                 {
+                    itemContainer.clearInv();
                     itemContainer.populateInv();
                 }
                 else
