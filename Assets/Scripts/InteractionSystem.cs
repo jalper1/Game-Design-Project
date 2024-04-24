@@ -12,7 +12,7 @@ namespace Custom.Scripts
         public float detectionRadius = 0.2f;
         public LayerMask detectionLayer;
         private string layerName = null;
-        public int huskRequired = 25;
+        public int huskRequired = 10;
         public int woodRequired = 25;
         public int stoneRequired = 25;
         private Collider2D objectDetectionCollider;
@@ -30,7 +30,7 @@ namespace Custom.Scripts
                             GameManager.Instance.playerResources.AddToResourceTotal(-huskRequired, "Husk");
                             GameManager.Instance.playerResources.AddToResourceTotal(-woodRequired, "Wood");
                             GameManager.Instance.playerResources.AddToResourceTotal(-stoneRequired, "Stone");
-                            huskRequired += 25;
+                            huskRequired += 10;
                             woodRequired += 25;
                             stoneRequired += 25;
                             Debug.Log("You now need " + huskRequired + " Husks, " + woodRequired + " Wood, and " + stoneRequired + " Stone for the next upgrade.");

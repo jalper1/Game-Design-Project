@@ -59,7 +59,6 @@ public class EnemyAI : MonoBehaviour
         if (playerZone != null)
         {
             animator.SetFloat("Speed", 0);
-            agent.isStopped = true;
 
             if (!isAttacking && !animator.GetCurrentAnimatorStateInfo(0).IsName("die")) // Only check for player range if not already attacking
             {
@@ -68,31 +67,38 @@ public class EnemyAI : MonoBehaviour
         }
         else
         {
-            agent.isStopped = false;
             animator.SetFloat("Speed", agent.velocity.magnitude);
         }
     }
 
     private async void FinishAttack()
     {
+        if (playerCharacter.health.Value <= 0 || animator.GetCurrentAnimatorStateInfo(0).IsName("hurt"))
+        {
+            isAttacking = false;
+            return;
+        }
         playerCharacter.health.Decrease(attackStrength);
         VitalsUIBind bindComponent = playerCharacter.healthBar.GetComponent<VitalsUIBind>();
         bindComponent.UpdateImage(playerCharacter.health.Value, playerCharacter.health.MaxValue, false);
         RespawnManager.Instance.playerLife = (int)playerCharacter.health.Value;
         await Task.Delay(1000);
         isAttacking = false;
-        agent.isStopped = false;
     }
 
     void Attack()
     {
         isAttacking = true;
-        animator.SetTrigger("Attack");
         playerZone = Physics2D.OverlapCircle(transform.position, attackRange, playerHitLayers);
-        if (playerZone != null)
+        if (playerZone != null && !animator.GetCurrentAnimatorStateInfo(0).IsName("hurt"))
         {
-            FinishAttack();
+            animator.SetTrigger("Attack");
+            Invoke("FinishAttack", 0.2f);
+        } else
+        {
+            isAttacking = false;
         }
+
     }
 
     void OnDrawGizmosSelected()

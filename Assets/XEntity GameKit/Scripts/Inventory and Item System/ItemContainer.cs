@@ -301,11 +301,13 @@ namespace XEntity.InventoryItemSystem
             if (mainContainerUI.gameObject.activeSelf && isContainerUIOpen)
             {
                 isContainerUIOpen = false;
+                Time.timeScale = 1;
                 StartCoroutine(Utils.TweenScaleOut(mainContainerUI.gameObject, 50, false));
             }
             else if(!mainContainerUI.gameObject.activeSelf && !isContainerUIOpen)
             {
                 isContainerUIOpen = true;
+                Time.timeScale = 0;
                 StartCoroutine(Utils.TweenScaleIn(mainContainerUI.gameObject, 50, Vector3.one));
             }
         }
