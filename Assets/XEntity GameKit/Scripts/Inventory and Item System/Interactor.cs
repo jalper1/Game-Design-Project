@@ -125,7 +125,6 @@ namespace XEntity.InventoryItemSystem
         {
             for (int i = 0; i < amount; i++)
             {
-                Debug.Log(inventory);
                 if (!inventory.AddItem(item))
                 {
                     return false;

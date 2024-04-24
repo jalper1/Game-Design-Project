@@ -33,6 +33,7 @@ namespace Custom.Scripts
             {
                 huskAmount += amount;
             }
+            Debug.Log("Wood: " + woodAmount + " Stone: " + stoneAmount + " Husk: " + huskAmount);
         }
         public int GetResourceTotal(string type)
         {

@@ -13,15 +13,12 @@ namespace Custom.Scripts
         public int maxHealth = 100;
         int currentHealth;
         public Collider2D hitBox;
-        int resourceAmount = 0;
-        public int maxResourceAmount = 50;
-        public int minResourceAmount = 10;
         private Health health; // health component
         public GameObject healthBar;
         public CanvasGroup thiefHealthBar; // healthBar's component
 
         private ResourceManage resourceManager;
-        public int harvestStrength = 10;
+        public int harvestStrength = 1;
         public Item harvestItem;
         Resource resourceGained;
         Interactor interactor;
@@ -32,7 +29,6 @@ namespace Custom.Scripts
             interactor = GetComponent<Interactor>();
             resourceManager = GameManager.Instance.playerResources;
             currentHealth = maxHealth;
-            resourceAmount = Random.Range(minResourceAmount, maxResourceAmount);
             if (healthBar == null)
             {
                 Debug.Log("ThiefHealthBar GameObject not found.");
@@ -89,6 +85,7 @@ namespace Custom.Scripts
             ItemContainer itemContainer;
             List<Item> itemList = ItemManager.Instance.itemList;
             itemList.Add(harvestItem);
+            resourceManager.AddToResourceTotal(harvestStrength, harvestItem.name);
 
             GameObject playerInventory = GameObject.Find("Player Inventory");
             if (playerInventory != null)

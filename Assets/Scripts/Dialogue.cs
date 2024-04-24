@@ -1,3 +1,4 @@
+using Custom.Scripts;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -21,7 +22,6 @@ public class Dialogue : MonoBehaviour
 
     [SerializeField]
     [TextArea]
-    private string[] dialogueWords;
 
     private bool dialogueActivated;
     private int step; // keep track of dialgoue conversation
@@ -30,20 +30,25 @@ public class Dialogue : MonoBehaviour
     // TODO: add in disabling dialogue interaction when npc dies or no longer need it
 
     // Update is called once per frame
+    private void Start()
+    {
+        speaker[0] = "Core";
+    }
     void Update()
     {
         if (Input.GetButtonDown("Interact") && dialogueActivated == true)
         {
-            if (step >= dialogueWords.Length)
+            if (step >= GameManager.Instance.dialogueWords.Length || GameManager.Instance.dialogueWords[step] == "")
             {
                 dialogueCanvas.SetActive(false);
                 step = 0;
+                GameManager.Instance.levelup = false;
             }
             else
             {
                 dialogueCanvas.SetActive(true);
-                speakerText.text = speaker[step];
-                dialogueText.text = dialogueWords[step];
+                speakerText.text = speaker[0];
+                dialogueText.text = GameManager.Instance.dialogueWords[step];
                 step += 1;
             }
         }

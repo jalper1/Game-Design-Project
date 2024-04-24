@@ -12,32 +12,42 @@ namespace Custom.Scripts
         public float detectionRadius = 0.2f;
         public LayerMask detectionLayer;
         private string layerName = null;
-        public int huskRequired = 10;
-        public int woodRequired = 25;
-        public int stoneRequired = 25;
         private Collider2D objectDetectionCollider;
+
+        private void Start()
+        {
+            GameManager.Instance.core = "You need " + GameManager.Instance.huskRequired + " Husks, " + GameManager.Instance.woodRequired + " Wood, and " + GameManager.Instance.stoneRequired + " Stone for the next upgrade!";
+        }
         void Update()
         {
+            if (GameManager.Instance.playerResources.GetResourceTotal("Wood") >= GameManager.Instance.woodRequired &&
+                            GameManager.Instance.playerResources.GetResourceTotal("Stone") >= GameManager.Instance.stoneRequired &&
+                            GameManager.Instance.playerResources.GetResourceTotal("Husk") >= GameManager.Instance.huskRequired)
+            {
+                GameManager.Instance.levelup = true;
+            }
+
             if (DetectObject() && InteractInput())
             {
                 switch (layerName)
                 {
                     case "CastleCore":
-                        if (GameManager.Instance.playerResources.GetResourceTotal("Wood") >= woodRequired && GameManager.Instance.playerResources.GetResourceTotal("Stone") >= stoneRequired && GameManager.Instance.playerResources.GetResourceTotal("Husk") >= huskRequired)
+                        if (GameManager.Instance.playerResources.GetResourceTotal("Wood") >= GameManager.Instance.woodRequired &&
+                            GameManager.Instance.playerResources.GetResourceTotal("Stone") >= GameManager.Instance.stoneRequired &&
+                            GameManager.Instance.playerResources.GetResourceTotal("Husk") >= GameManager.Instance.huskRequired)
                         {
                             GameManager.Instance.IncreaseCoreLevel();
-                            Debug.Log("Castle Core upgraded to Level " + GameManager.Instance.GetCoreLevel());
-                            GameManager.Instance.playerResources.AddToResourceTotal(-huskRequired, "Husk");
-                            GameManager.Instance.playerResources.AddToResourceTotal(-woodRequired, "Wood");
-                            GameManager.Instance.playerResources.AddToResourceTotal(-stoneRequired, "Stone");
-                            huskRequired += 10;
-                            woodRequired += 25;
-                            stoneRequired += 25;
-                            Debug.Log("You now need " + huskRequired + " Husks, " + woodRequired + " Wood, and " + stoneRequired + " Stone for the next upgrade.");
+                            GameManager.Instance.playerResources.AddToResourceTotal(-GameManager.Instance.huskRequired, "Husk");
+                            GameManager.Instance.playerResources.AddToResourceTotal(-GameManager.Instance.woodRequired, "Wood");
+                            GameManager.Instance.playerResources.AddToResourceTotal(-GameManager.Instance.stoneRequired, "Stone");
+                            GameManager.Instance.huskRequired += 10;
+                            GameManager.Instance.woodRequired += 25;
+                            GameManager.Instance.stoneRequired += 25;
+                            GameManager.Instance.core = "You now need " + GameManager.Instance.huskRequired + " Husks, " + GameManager.Instance.woodRequired + " Wood, and " + GameManager.Instance.stoneRequired + " Stone for the next upgrade.";
                         }
                         else
                         {
-                            Debug.Log("You need " + huskRequired + " Husks, " + woodRequired + " Wood, and " + stoneRequired + " Stone for the next upgrade!");
+                            GameManager.Instance.core = "You need " + GameManager.Instance.huskRequired + " Husks, " + GameManager.Instance.woodRequired + " Wood, and " + GameManager.Instance.stoneRequired + " Stone for the next upgrade!";
                         }
                         break;
                     case "Item":
