@@ -1,9 +1,11 @@
 using Custom.Scripts;
 using JetBrains.Annotations;
 using System.Collections;
+using System.Net.NetworkInformation;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Vitals;
 using XEntity.InventoryItemSystem;
 
 public class RespawnManager : MonoBehaviour
@@ -68,10 +70,10 @@ public class RespawnManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        player = GameObject.Find("Player");
         // This function is called when a new scene is loaded.
         if (scene.buildIndex == 1 && !transition) // Assuming SpawnPoint is only relevant in scene index 1
         {
-            player = GameObject.Find("Player");
             spawnPoint = GameObject.Find("SpawnPoint");
 
             if (player != null && spawnPoint != null)
@@ -93,6 +95,37 @@ public class RespawnManager : MonoBehaviour
 
     private void Update()
     {
+        player = GameObject.Find("Player");
+        PlayerCharacter playerCharacter = player.GetComponent<PlayerCharacter>();
+
+        if (GameManager.Instance.levelup)
+        {
+            switch (GameManager.Instance.coreLevel)
+            {
+                case 1:
+                    GameManager.Instance.harvestStrength = 1;
+                    playerLife = 100;
+                    break;
+                case 2:
+                    GameManager.Instance.harvestStrength = 2;
+                    playerLife = 120;
+                    break;
+                case 3:
+                    GameManager.Instance.harvestStrength = 3;
+                    playerLife = 140;
+                    break;
+                case 4:
+                    GameManager.Instance.harvestStrength = 4;
+                    playerLife = 160;
+                    break;
+                default:
+                    GameManager.Instance.harvestStrength = 1;
+                    playerLife = 100;
+                    break;
+            }
+            playerCharacter.health.Set(playerLife);
+            playerCharacter.health.SetMax(playerLife);
+        }
         if (playerLife <= 0)
         {
             respawn = true;
@@ -102,6 +135,15 @@ public class RespawnManager : MonoBehaviour
         {
             SceneManager.LoadScene(1);
             ItemManager.Instance.itemList.Clear();
+        }
+        if (player != null)
+        {
+            if (playerCharacter != null)
+            {
+                playerCharacter.health.Set(playerLife);
+                VitalsUIBind bindComponent = playerCharacter.healthBar.GetComponent<VitalsUIBind>();
+                bindComponent.UpdateImage(playerCharacter.health.Value, playerCharacter.health.MaxValue, false);
+            }
         }
     }
 }

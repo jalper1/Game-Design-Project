@@ -15,6 +15,7 @@ namespace Custom.Scripts
         public string core = "";
         public string[] dialogueWords;
         public bool levelup = false;
+        public int harvestStrength = 1;
 
         // doing something don't interrupt
         public static GameManager Instance

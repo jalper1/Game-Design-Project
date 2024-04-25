@@ -1161,11 +1161,11 @@ PrefabInstance:
       objectReference: {fileID: 1564766954}
     - target: {fileID: 8584599741793670277, guid: 56f1a145642d1d246a1c8cf47950d961, type: 3}
       propertyPath: maxResource
-      value: 50
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8584599741793670277, guid: 56f1a145642d1d246a1c8cf47950d961, type: 3}
       propertyPath: minResource
-      value: 25
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

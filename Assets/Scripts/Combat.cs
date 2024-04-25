@@ -13,9 +13,7 @@ namespace Custom.Scripts
 
         private bool isAttacking = false; // New variable to track attack state
         private Resource resourceGained;
-        private ResourceManage resourceManager;
-        public int harvestStrength = 10;
-        private Item harvestItem;
+        private ResourceManage resourceManager;        private Item harvestItem;
 
         public float attackRate = 2f;
         public float nextAttackTime = 0f;
@@ -93,7 +91,7 @@ namespace Custom.Scripts
             }
             foreach (Collider2D resource in hitResources)
             {
-                (harvestItem, resourceGained.resourcesGained) = resource.transform.GetComponent<ResourceCalc>().CollectResource(harvestStrength);
+                (harvestItem, resourceGained.resourcesGained) = resource.transform.GetComponent<ResourceCalc>().CollectResource(GameManager.Instance.harvestStrength);
                 resourceManager.AddToResourceTotal(resourceGained.resourcesGained, harvestItem.name);
 
             }

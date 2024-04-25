@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Vitals;
 
 public class LevelLoaderBack : MonoBehaviour
 {
@@ -47,5 +48,15 @@ public class LevelLoaderBack : MonoBehaviour
         player = GameObject.Find("Player");
         player.transform.localScale = new Vector3(-1, 1, 1);
 
+        if (player != null)
+        {
+            PlayerCharacter playerCharacter = player.GetComponent<PlayerCharacter>();
+            if (playerCharacter != null)
+            {
+                playerCharacter.health.Set(RespawnManager.Instance.playerLife);
+                Debug.Log("Player life: " + RespawnManager.Instance.playerLife);
+                Debug.Log("Player Health: " + playerCharacter.health.Value);
+            }
+        }
     }
 }
