@@ -73,7 +73,8 @@ public class EnemyAI : MonoBehaviour
 
     private async void FinishAttack()
     {
-        if (playerCharacter.health.Value <= 0 || animator.GetCurrentAnimatorStateInfo(0).IsName("hurt"))
+        playerZone = Physics2D.OverlapCircle(transform.position, attackRange, playerHitLayers);
+        if (playerCharacter.health.Value <= 0 || animator.GetCurrentAnimatorStateInfo(0).IsName("hurt") || playerZone == null)
         {
             isAttacking = false;
             return;
