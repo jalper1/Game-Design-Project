@@ -250,10 +250,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   harvestItem: {fileID: 11400000, guid: e17e972f7ff8eb44c950e480afac4b0f, type: 2}
-  resourceAmount: 10
+  resourceAmount: 1
   resourceType: Wood
-  maxResource: 50
-  minResource: 25
+  maxResource: 10
+  minResource: 5
 --- !u!114 &2972115269252126607
 MonoBehaviour:
   m_ObjectHideFlags: 0

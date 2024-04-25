@@ -171,8 +171,8 @@ MonoBehaviour:
   harvestItem: {fileID: 11400000, guid: 8ca26c4a40ea3864eaab9f582b93a787, type: 2}
   resourceAmount: 10
   resourceType: Stone
-  maxResource: 50
-  minResource: 25
+  maxResource: 5
+  minResource: 1
 --- !u!114 &9111520606754373698
 MonoBehaviour:
   m_ObjectHideFlags: 0

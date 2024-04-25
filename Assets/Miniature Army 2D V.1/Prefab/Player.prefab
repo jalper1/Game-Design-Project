@@ -907,7 +907,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 7589347843042509261}
-  harvestStrength: 10
+  harvestStrength: 1
   attackRate: 1.5
   nextAttackTime: 0
   attackPoint: {fileID: 466834757400757958}
@@ -937,9 +937,6 @@ MonoBehaviour:
   detectionLayer:
     serializedVersion: 2
     m_Bits: 3072
-  huskRequired: 25
-  woodRequired: 25
-  stoneRequired: 25
 --- !u!50 &6809411106186222390
 Rigidbody2D:
   serializedVersion: 4
