@@ -103,23 +103,23 @@ public class RespawnManager : MonoBehaviour
             switch (GameManager.Instance.coreLevel)
             {
                 case 1:
-                    GameManager.Instance.harvestStrength = 1;
+                    GameManager.Instance.harvestStrength = 2;
                     playerLife = 100;
                     break;
                 case 2:
-                    GameManager.Instance.harvestStrength = 2;
+                    GameManager.Instance.harvestStrength = 3;
                     playerLife = 120;
                     break;
                 case 3:
-                    GameManager.Instance.harvestStrength = 3;
+                    GameManager.Instance.harvestStrength = 4;
                     playerLife = 140;
                     break;
                 case 4:
-                    GameManager.Instance.harvestStrength = 4;
+                    GameManager.Instance.harvestStrength = 5;
                     playerLife = 160;
                     break;
                 default:
-                    GameManager.Instance.harvestStrength = 1;
+                    GameManager.Instance.harvestStrength = 2;
                     playerLife = 100;
                     break;
             }

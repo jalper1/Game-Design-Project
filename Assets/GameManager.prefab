@@ -46,8 +46,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerResources: {fileID: 7243190308106118893}
-  itemManager: {fileID: 0}
   coreLevel: 1
+  huskRequired: 10
+  woodRequired: 25
+  stoneRequired: 25
+  core: 
+  dialogueWords: []
+  levelup: 0
+  harvestStrength: 2
 --- !u!114 &7243190308106118893
 MonoBehaviour:
   m_ObjectHideFlags: 0
