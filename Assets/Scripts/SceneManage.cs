@@ -7,14 +7,15 @@ public class SceneManage : MonoBehaviour
 {
     public Animator transition;
 
+    private void Start()
+    {
+        transition = GetComponent<Animator>();
+        transition.ResetTrigger("Start");
+        Time.timeScale = 1;
+    }
     public void LoadScene(int buildIndex)
     {
-        if(buildIndex == 1)
-        {
-            transition.ResetTrigger("Start");
-        }
         SceneManager.LoadScene(buildIndex);
-
     }
 
     public void QuitGame()
