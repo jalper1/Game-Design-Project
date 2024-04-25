@@ -225,6 +225,7 @@ GameObject:
   - component: {fileID: 8060343720380838855}
   - component: {fileID: 8060343720380838854}
   - component: {fileID: 2137064456511058863}
+  - component: {fileID: 3666287142035203724}
   m_Layer: 5
   m_Name: Container Prefab
   m_TagString: Untagged
@@ -282,6 +283,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4fa9f9efd898704a8dd6371e0a30e6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  transition: {fileID: 3666287142035203724}
+--- !u!95 &3666287142035203724
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8060343720380838848}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 679a401aba197174287350795cc7a116, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &5691441215916632591
 PrefabInstance:
   m_ObjectHideFlags: 0
