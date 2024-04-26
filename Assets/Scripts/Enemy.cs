@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using Vitals;
 using XEntity.InventoryItemSystem;
 
@@ -75,8 +76,11 @@ namespace Custom.Scripts
         {
             animator.SetBool("IsDead", true);
             GetComponent<Collider2D>().enabled = false;
+            GetComponent<Rigidbody2D>().simulated = false;
             hitBox.enabled = false;
             this.enabled = false;
+            GetComponent<NavMeshAgent>().isStopped = true;
+
             //(harvestItem, resourceGained.resourcesGained) = transform.GetComponent<ResourceCalc>().CollectResource(harvestStrength);
             //resourceManager.AddToResourceTotal(resourceGained.resourcesGained, harvestItem.name);
 

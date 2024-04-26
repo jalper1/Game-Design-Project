@@ -3185,7 +3185,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2934415975831020913, guid: e331a29974ad4d04b9944baa5fe424ba, type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2941257934902852260, guid: e331a29974ad4d04b9944baa5fe424ba, type: 3}
       propertyPath: m_LocalScale.x
@@ -5408,10 +5408,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5226500469724707001, guid: e331a29974ad4d04b9944baa5fe424ba, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 838304613}
     - target: {fileID: 5320949966238242816, guid: e331a29974ad4d04b9944baa5fe424ba, type: 3}
       propertyPath: inventory
       value: 
       objectReference: {fileID: 838304613}
+    - target: {fileID: 8979483599922772407, guid: e331a29974ad4d04b9944baa5fe424ba, type: 3}
+      propertyPath: harvestItem
+      value: 
+      objectReference: {fileID: 11400000, guid: 8ca26c4a40ea3864eaab9f582b93a787, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

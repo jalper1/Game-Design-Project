@@ -12,7 +12,9 @@ GameObject:
   - component: {fileID: 4857196357290268523}
   - component: {fileID: 2016970072917218713}
   - component: {fileID: 6521211100992699815}
-  m_Layer: 0
+  - component: {fileID: 5226500469724707001}
+  - component: {fileID: 8979483599922772407}
+  m_Layer: 13
   m_Name: Rock1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -161,3 +163,33 @@ MonoBehaviour:
   m_Area: 1
   m_IgnoreFromBuild: 0
   m_AffectedAgents: ffffffff
+--- !u!114 &5226500469724707001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2934415975831020913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b95cc55de8bd0414298605e880f3b734, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory: {fileID: 0}
+--- !u!114 &8979483599922772407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2934415975831020913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8577da5d19f6744fb5b3d469d33c85f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  harvestItem: {fileID: 11400000, guid: 8ca26c4a40ea3864eaab9f582b93a787, type: 2}
+  resourceAmount: 10
+  resourceType: Stone
+  maxResource: 10
+  minResource: 5
