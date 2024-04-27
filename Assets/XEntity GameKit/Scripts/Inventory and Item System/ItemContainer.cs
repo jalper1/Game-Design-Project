@@ -37,13 +37,17 @@ namespace XEntity.InventoryItemSystem
 
         private List<SlotOptionButtonInfo> slotOptionButtonInfoList;
 
-        protected virtual void OnEnable() 
+        public AudioSource audioSource;
+        public AudioClip openInventory;
+        public AudioClip closeInventory;
+
+        protected virtual void OnEnable()
         {
             ItemSlotUIEvents.OnSlotDrag += CloseSlotOptionsMenu;
             ContainerPanelDragger.OnContainerPanelDrag += CloseSlotOptionsMenu;
         }
 
-        protected virtual void OnDisable() 
+        protected virtual void OnDisable()
         {
             ItemSlotUIEvents.OnSlotDrag -= CloseSlotOptionsMenu;
             ContainerPanelDragger.OnContainerPanelDrag -= CloseSlotOptionsMenu;
@@ -57,9 +61,9 @@ namespace XEntity.InventoryItemSystem
             InitializeContainer();
 
             //Initialize all the slots in this container.
-            foreach (ItemSlot slot in slots) 
+            foreach (ItemSlot slot in slots)
             {
-                slot.Initialize();            
+                slot.Initialize();
             }
 
             List<Item> itemList = ItemManager.Instance.itemList;
@@ -209,7 +213,7 @@ namespace XEntity.InventoryItemSystem
 
                 OpenSlotOptionsMenu();
             }
-            else 
+            else
             {
                 CloseSlotOptionsMenu();
             }
@@ -296,18 +300,19 @@ namespace XEntity.InventoryItemSystem
         protected void ToggleUI()
         {
             CloseSlotOptionsMenu();
-
             //Tweens in/out the UI.
             if (mainContainerUI.gameObject.activeSelf && isContainerUIOpen)
             {
                 isContainerUIOpen = false;
                 Time.timeScale = 1;
+                audioSource.PlayOneShot(closeInventory);
                 StartCoroutine(Utils.TweenScaleOut(mainContainerUI.gameObject, 50, false));
             }
-            else if(!mainContainerUI.gameObject.activeSelf && !isContainerUIOpen)
+            else if (!mainContainerUI.gameObject.activeSelf && !isContainerUIOpen)
             {
                 isContainerUIOpen = true;
                 Time.timeScale = 0;
+                audioSource.PlayOneShot(openInventory);
                 StartCoroutine(Utils.TweenScaleIn(mainContainerUI.gameObject, 50, Vector3.one));
             }
         }
@@ -318,7 +323,7 @@ namespace XEntity.InventoryItemSystem
         //This method saves the container data on an unique file path that is aquired based on the passed in id.
         //This id should be unique for different saves.
         //If a save already exists with the id, the data will be overwritten.
-        public void SaveData(string id) 
+        public void SaveData(string id)
         {
             //An unique file path is aquired here based on the passed in id. 
             string dataPath = GetIDPath(id);
@@ -326,14 +331,14 @@ namespace XEntity.InventoryItemSystem
             if (System.IO.File.Exists(dataPath))
             {
                 System.IO.File.Delete(dataPath);
-                Debug.Log("Exisiting data with id: " + id +"  is overwritten.");
+                Debug.Log("Exisiting data with id: " + id + "  is overwritten.");
             }
 
-            try 
+            try
             {
                 Transform slotHolder = mainContainerUI.Find("Slot Holder");
                 SlotInfo info = new SlotInfo();
-                for (int i = 0; i < slotHolder.childCount; i++) 
+                for (int i = 0; i < slotHolder.childCount; i++)
                 {
                     ItemSlot slot = slotHolder.GetChild(i).GetComponent<ItemSlot>();
                     if (!slot.IsEmpty)
@@ -345,8 +350,8 @@ namespace XEntity.InventoryItemSystem
                 string jsonData = JsonUtility.ToJson(info);
                 System.IO.File.WriteAllText(dataPath, jsonData);
                 Debug.Log("<color=green>Data succesfully saved! </color>");
-            } 
-            catch 
+            }
+            catch
             {
                 Debug.LogError("Could not save container data! Make sure you have entered a valid id and all the item scriptable objects are added to the ItemManager item list");
             }
@@ -354,17 +359,17 @@ namespace XEntity.InventoryItemSystem
 
         //Loads container data that was saved with the passed in id.
         //NOTE: A save file must exist first with the id in order for it to be loaded.
-        public void LoadData(string id) 
+        public void LoadData(string id)
         {
             string dataPath = GetIDPath(id);
 
-            if (!System.IO.File.Exists(dataPath)) 
+            if (!System.IO.File.Exists(dataPath))
             {
                 Debug.LogWarning("No saved data exists for the provided id: " + id);
                 return;
             }
 
-            try 
+            try
             {
                 //Read and parse json string to slot info object and load all data accordingly.
                 string jsonData = System.IO.File.ReadAllText(dataPath);
@@ -385,7 +390,7 @@ namespace XEntity.InventoryItemSystem
         }
 
         //Deletes the save with the passed in id, if one exists.
-        public void DeleteData(string id) 
+        public void DeleteData(string id)
         {
             string path = GetIDPath(id);
             if (System.IO.File.Exists(path))
@@ -396,7 +401,7 @@ namespace XEntity.InventoryItemSystem
         }
 
         //Returns a unique path based on the id.
-        protected virtual string GetIDPath(string id) 
+        protected virtual string GetIDPath(string id)
         {
             return Application.persistentDataPath + $"/{id}.dat";
         }
@@ -409,20 +414,20 @@ namespace XEntity.InventoryItemSystem
             public List<int> itemIndexs;
             public List<int> itemCounts;
 
-            public SlotInfo() 
+            public SlotInfo()
             {
                 slotIndexs = new List<int>();
                 itemIndexs = new List<int>();
                 itemCounts = new List<int>();
             }
 
-            public void AddInfo(int slotInex, int itemIndex, int itemCount) 
+            public void AddInfo(int slotInex, int itemIndex, int itemCount)
             {
                 slotIndexs.Add(slotInex);
                 itemIndexs.Add(itemIndex);
                 itemCounts.Add(itemCount);
             }
-            
+
         }
         #endregion
 
@@ -432,7 +437,7 @@ namespace XEntity.InventoryItemSystem
             internal System.Action<ItemSlot, Interactor> onButtonClicked;
             internal System.Action<ItemSlot> onButtonEventFinished;
 
-            internal SlotOptionButtonInfo(Button optionButton, System.Action<ItemSlot, Interactor> onButtonClicked, System.Action<ItemSlot> onButtonEventFinished) 
+            internal SlotOptionButtonInfo(Button optionButton, System.Action<ItemSlot, Interactor> onButtonClicked, System.Action<ItemSlot> onButtonEventFinished)
             {
                 this.optionButton = optionButton;
                 this.onButtonClicked = onButtonClicked;
@@ -440,14 +445,14 @@ namespace XEntity.InventoryItemSystem
             }
 
             //Upadtes info based on the currently selected slot
-            internal void UpdateInfo(ItemSlot slot, Interactor interactor) 
+            internal void UpdateInfo(ItemSlot slot, Interactor interactor)
             {
                 optionButton.onClick.RemoveAllListeners();
                 optionButton.onClick.AddListener(
-                    delegate 
-                    { 
-                        onButtonClicked?.Invoke(slot, interactor); 
-                        onButtonEventFinished?.Invoke(slot); 
+                    delegate
+                    {
+                        onButtonClicked?.Invoke(slot, interactor);
+                        onButtonEventFinished?.Invoke(slot);
                     });
             }
         }

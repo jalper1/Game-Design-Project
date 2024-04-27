@@ -17,6 +17,10 @@ public class RespawnManager : MonoBehaviour
     public int playerLife = 100;
     public bool transition = false;
 
+    public AudioSource AudioSource;
+    public AudioClip deathSound;
+    public AudioClip spawnSound;
+
     public static RespawnManager Instance
     {
         get
@@ -105,8 +109,10 @@ public class RespawnManager : MonoBehaviour
 
         if (respawn)
         {
-            SceneManager.LoadScene(1);
+            AudioSource.PlayOneShot(deathSound);
             ItemManager.Instance.itemList.Clear();
+            SceneManager.LoadScene(1);
+     
         }
         if (player != null)
         {

@@ -41,8 +41,14 @@ public class SceneManage : MonoBehaviour
 
     public void QuitGame()
     {
+        AudioSource.PlayOneShot(playButtonClick);
+        StartCoroutine(Wait(delayBeforeSceneLoad));
+    }
+    private IEnumerator Wait(float delay)
+    {
+        // Wait for the specified time
+        yield return new WaitForSeconds(delay);
         Application.Quit();
-
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #endif

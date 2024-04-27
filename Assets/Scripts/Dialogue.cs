@@ -29,6 +29,10 @@ public class Dialogue : MonoBehaviour
     private GameObject player;
     PlayerCharacter playerCharacter;
 
+    public AudioSource AudioSource;
+    public AudioClip levelupAudio;
+    public AudioClip dialogueAudio;
+
     // TODO: add in disabling dialogue interaction when npc dies or no longer need it
 
     // Update is called once per frame
@@ -48,6 +52,7 @@ public class Dialogue : MonoBehaviour
                 step = 0;
                 if (GameManager.Instance.levelup)
                 {
+                    AudioSource.PlayOneShot(levelupAudio);
                     switch (GameManager.Instance.coreLevel)
                     {
                         case 1:
@@ -82,6 +87,7 @@ public class Dialogue : MonoBehaviour
                 speakerText.text = speaker[0];
                 dialogueText.text = GameManager.Instance.dialogueWords[step];
                 step += 1;
+                AudioSource.PlayOneShot(dialogueAudio);
             }
         }
     }

@@ -538,7 +538,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 3e2522e7aa610114cba6ce0125910bf0, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 645e01b6a161a4b409ef689b4b921604, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.1
   m_Pitch: 1
@@ -1195,7 +1195,7 @@ MonoBehaviour:
   AudioSource: {fileID: 1634835536}
   playButtonClick: {fileID: 8300000, guid: 56e0067efbfa3c54d9fc91fb1e20c3d1, type: 3}
   optionButtonClick: {fileID: 8300000, guid: 2dce7cf832326ab478412794e374a4a3, type: 3}
-  quitButtonClick: {fileID: 8300000, guid: 2dce7cf832326ab478412794e374a4a3, type: 3}
+  quitButtonClick: {fileID: 8300000, guid: 56e0067efbfa3c54d9fc91fb1e20c3d1, type: 3}
   buildIndex: 1
   delayBeforeSceneLoad: 0.2
 --- !u!95 &1634835535

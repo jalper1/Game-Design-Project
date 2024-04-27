@@ -24,6 +24,11 @@ public class EnemyAI : MonoBehaviour
 
     PlayerCharacter playerCharacter;
 
+    public AudioSource AudioSource;
+    public AudioClip playerHurtSound;
+    public AudioClip playerHurtSound2;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -73,12 +78,22 @@ public class EnemyAI : MonoBehaviour
 
     private async void FinishAttack()
     {
+        int hurt = Random.Range(0, 2);
         playerZone = Physics2D.OverlapCircle(transform.position, attackRange, playerHitLayers);
         if (playerCharacter.health.Value <= 0 || animator.GetCurrentAnimatorStateInfo(0).IsName("hurt") || playerZone == null)
         {
             isAttacking = false;
             return;
         }
+        if (hurt == 0)
+        {
+            AudioSource.PlayOneShot(playerHurtSound2);
+        }
+        else
+        {
+            AudioSource.PlayOneShot(playerHurtSound);
+        }
+
         playerCharacter.health.Decrease(attackStrength);
         VitalsUIBind bindComponent = playerCharacter.healthBar.GetComponent<VitalsUIBind>();
         bindComponent.UpdateImage(playerCharacter.health.Value, playerCharacter.health.MaxValue, false);
@@ -95,7 +110,8 @@ public class EnemyAI : MonoBehaviour
         {
             animator.SetTrigger("Attack");
             Invoke("FinishAttack", 0.25f);
-        } else
+        }
+        else
         {
             isAttacking = false;
         }

@@ -26,6 +26,7 @@ namespace Custom.Scripts
         public bool canDash = true;
 
         public AudioSource AudioSource;
+        public AudioSource DashAudio;
         public AudioClip dashSound;
         public AudioClip walkSoundStone;
         public AudioClip walkSoundGrass;
@@ -63,7 +64,7 @@ namespace Custom.Scripts
             {
                 if (Input.GetButtonDown("Dash"))
                 {
-                    AudioSource.PlayOneShot(dashSound);
+                    DashAudio.PlayOneShot(dashSound);
                     dash = true;
                     nextDashTime = Time.time + 1f / dashRate;
 
