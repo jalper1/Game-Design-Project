@@ -83,8 +83,9 @@ namespace Custom.Scripts
             animator.SetBool("IsDead", true);
             GetComponent<Collider2D>().enabled = false;
             GetComponent<Rigidbody2D>().simulated = false;
+            GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
             hitBox.enabled = false;
-            this.enabled = false;
+            enabled = false;
             GetComponent<NavMeshAgent>().isStopped = true;
 
             //(harvestItem, resourceGained.resourcesGained) = transform.GetComponent<ResourceCalc>().CollectResource(harvestStrength);

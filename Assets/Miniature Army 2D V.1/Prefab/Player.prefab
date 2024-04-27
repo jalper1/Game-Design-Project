@@ -97,7 +97,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -0, y: 0.68261874}
   serializedVersion: 2
-  m_Radius: 0.846455
+  m_Radius: 0.8600625
 --- !u!1 &5337123468475635239
 GameObject:
   m_ObjectHideFlags: 0
@@ -154,7 +154,7 @@ Transform:
   m_GameObject: {fileID: 5657083567618710008}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.6, y: 1.07, z: 0}
+  m_LocalPosition: {x: -0.675, y: 0.699, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -918,7 +918,7 @@ MonoBehaviour:
   attackRate: 1.5
   nextAttackTime: 0
   attackPoint: {fileID: 466834757400757958}
-  attackRange: 1
+  attackRange: 0.6
   hitLayers:
     serializedVersion: 2
     m_Bits: 256
@@ -1019,7 +1019,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae1cdaac12cc4a659c35e6dc50e67cf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <RegenerationRate>k__BackingField: 5
+  <RegenerationRate>k__BackingField: 7.5
   <DrainRate>k__BackingField: 0
   staminaComponent: {fileID: 321340890651772805}
 --- !u!114 &2938723571114065015
