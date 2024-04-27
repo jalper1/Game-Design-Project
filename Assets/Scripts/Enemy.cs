@@ -21,9 +21,11 @@ namespace Custom.Scripts
         private ResourceManage resourceManager;
         public int harvestStrength = 1;
         public Item harvestItem;
-        Resource resourceGained;
+
         Interactor interactor;
 
+        public AudioSource AudioSource;
+        public AudioClip enemyDeathSound;
         // Start is called before the first frame update
         void Start()
         {
@@ -74,6 +76,10 @@ namespace Custom.Scripts
 
         void Die()
         {
+            if (!AudioSource.isPlaying)
+            {
+                AudioSource.PlayOneShot(enemyDeathSound);
+            }
             animator.SetBool("IsDead", true);
             GetComponent<Collider2D>().enabled = false;
             GetComponent<Rigidbody2D>().simulated = false;
