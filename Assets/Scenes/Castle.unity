@@ -2018,7 +2018,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -943830189
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 396f0dc72648e91429c091e71fbf0da4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2040,6 +2040,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1782068459}
+  - component: {fileID: 1782068460}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -2065,6 +2066,18 @@ Transform:
   - {fileID: 1884515359}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1782068460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1782068458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65461664fe14179418f5b051cfd704b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1799155341
 GameObject:
   m_ObjectHideFlags: 0
@@ -2364,7 +2377,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -943830189
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 396f0dc72648e91429c091e71fbf0da4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

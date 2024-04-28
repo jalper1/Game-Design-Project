@@ -109,7 +109,7 @@ public class EnemyAI : MonoBehaviour
         if (playerZone != null && !animator.GetCurrentAnimatorStateInfo(0).IsName("hurt"))
         {
             animator.SetTrigger("Attack");
-            Invoke("FinishAttack", 0.25f);
+            Invoke("FinishAttack", 0.275f);
         }
         else
         {
