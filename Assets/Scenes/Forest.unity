@@ -1161,11 +1161,11 @@ PrefabInstance:
       objectReference: {fileID: 1564766954}
     - target: {fileID: 8584599741793670277, guid: 56f1a145642d1d246a1c8cf47950d961, type: 3}
       propertyPath: maxResource
-      value: 50
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8584599741793670277, guid: 56f1a145642d1d246a1c8cf47950d961, type: 3}
       propertyPath: minResource
-      value: 25
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1891,9 +1891,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 5af570010aa06394490dafe48e87365e, type: 3}
+  m_audioClip: {fileID: 8300000, guid: bdd89f7cba916094bbac31872c44d504, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.01
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -2592,7 +2592,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -2.7814026, y: -24.625425}
+  m_Offset: {x: -2.7814026, y: -25.2604}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2603,7 +2603,7 @@ BoxCollider2D:
     adaptiveTiling: 1
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 140.39874, y: 42.6637}
+  m_Size: {x: 140.39874, y: 41.39375}
   m_EdgeRadius: 0
 --- !u!212 &986147557
 SpriteRenderer:
@@ -3106,7 +3106,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2934415975831020913, guid: e331a29974ad4d04b9944baa5fe424ba, type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2941257934902852260, guid: e331a29974ad4d04b9944baa5fe424ba, type: 3}
       propertyPath: m_LocalScale.x
@@ -5386,10 +5386,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5226500469724707001, guid: e331a29974ad4d04b9944baa5fe424ba, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 838304613}
     - target: {fileID: 5320949966238242816, guid: e331a29974ad4d04b9944baa5fe424ba, type: 3}
       propertyPath: inventory
       value: 
       objectReference: {fileID: 838304613}
+    - target: {fileID: 8979483599922772407, guid: e331a29974ad4d04b9944baa5fe424ba, type: 3}
+      propertyPath: harvestItem
+      value: 
+      objectReference: {fileID: 11400000, guid: 8ca26c4a40ea3864eaab9f582b93a787, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

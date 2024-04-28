@@ -13,9 +13,7 @@ namespace Custom.Scripts
 
         private bool isAttacking = false; // New variable to track attack state
         private Resource resourceGained;
-        private ResourceManage resourceManager;
-        public int harvestStrength = 10;
-        private Item harvestItem;
+        private ResourceManage resourceManager; private Item harvestItem;
 
         public float attackRate = 2f;
         public float nextAttackTime = 0f;
@@ -27,6 +25,11 @@ namespace Custom.Scripts
 
         PlayerCharacter playerCharacter;
         public bool canAttack = true;
+
+        public AudioSource AudioSource;
+        public AudioClip hitPerson;
+        public AudioClip hitResource;
+        public AudioClip hitNothing;
 
         public bool IsAttacking()
         {
@@ -59,7 +62,7 @@ namespace Custom.Scripts
                     nextAttackTime = Time.time + 1f / attackRate;
                 }
             }
-            if(playerCharacter.health.Value <= 0)
+            if (playerCharacter.health.Value <= 0)
             {
                 animator.SetTrigger("Death");
             }
@@ -81,6 +84,24 @@ namespace Custom.Scripts
             animator.SetTrigger("Attack");
         }
 
+        private void PlayAudio()
+        {
+            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, hitLayers);
+            Collider2D[] hitResources = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, resourceLayers);
+
+            if (hitEnemies.Length > 0)
+            {
+                AudioSource.PlayOneShot(hitPerson);
+            }
+            else if (hitResources.Length > 0)
+            {
+                AudioSource.PlayOneShot(hitResource);
+            }
+            else
+            {
+                AudioSource.PlayOneShot(hitNothing);
+            }
+        }
         // called by animation event
         private void AttackHit()
         {
@@ -93,7 +114,7 @@ namespace Custom.Scripts
             }
             foreach (Collider2D resource in hitResources)
             {
-                (harvestItem, resourceGained.resourcesGained) = resource.transform.GetComponent<ResourceCalc>().CollectResource(harvestStrength);
+                (harvestItem, resourceGained.resourcesGained) = resource.transform.GetComponent<ResourceCalc>().CollectResource(GameManager.Instance.harvestStrength);
                 resourceManager.AddToResourceTotal(resourceGained.resourcesGained, harvestItem.name);
 
             }

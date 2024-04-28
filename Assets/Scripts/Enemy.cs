@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using Vitals;
 using XEntity.InventoryItemSystem;
 
@@ -20,9 +21,11 @@ namespace Custom.Scripts
         private ResourceManage resourceManager;
         public int harvestStrength = 1;
         public Item harvestItem;
-        Resource resourceGained;
+
         Interactor interactor;
 
+        public AudioSource AudioSource;
+        public AudioClip enemyDeathSound;
         // Start is called before the first frame update
         void Start()
         {
@@ -73,10 +76,18 @@ namespace Custom.Scripts
 
         void Die()
         {
+            if (!AudioSource.isPlaying)
+            {
+                AudioSource.PlayOneShot(enemyDeathSound);
+            }
             animator.SetBool("IsDead", true);
             GetComponent<Collider2D>().enabled = false;
+            GetComponent<Rigidbody2D>().simulated = false;
+            GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
             hitBox.enabled = false;
-            this.enabled = false;
+            enabled = false;
+            GetComponent<NavMeshAgent>().isStopped = true;
+
             //(harvestItem, resourceGained.resourcesGained) = transform.GetComponent<ResourceCalc>().CollectResource(harvestStrength);
             //resourceManager.AddToResourceTotal(resourceGained.resourcesGained, harvestItem.name);
 

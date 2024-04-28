@@ -40,9 +40,9 @@ namespace Custom.Scripts
                             GameManager.Instance.playerResources.AddToResourceTotal(-GameManager.Instance.huskRequired, "Husk");
                             GameManager.Instance.playerResources.AddToResourceTotal(-GameManager.Instance.woodRequired, "Wood");
                             GameManager.Instance.playerResources.AddToResourceTotal(-GameManager.Instance.stoneRequired, "Stone");
-                            GameManager.Instance.huskRequired += 10;
-                            GameManager.Instance.woodRequired += 25;
-                            GameManager.Instance.stoneRequired += 25;
+                            GameManager.Instance.huskRequired += 5;
+                            GameManager.Instance.woodRequired += 10;
+                            GameManager.Instance.stoneRequired += 10;
                             GameManager.Instance.core = "You now need " + GameManager.Instance.huskRequired + " Husks, " + GameManager.Instance.woodRequired + " Wood, and " + GameManager.Instance.stoneRequired + " Stone for the next upgrade.";
                         }
                         else

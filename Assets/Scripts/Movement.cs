@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using Vitals;
 using Input = UnityEngine.Input;
 
@@ -23,6 +24,12 @@ namespace Custom.Scripts
 
         PlayerCharacter playerCharacter;
         public bool canDash = true;
+
+        public AudioSource AudioSource;
+        public AudioSource DashAudio;
+        public AudioClip dashSound;
+        public AudioClip walkSoundStone;
+        public AudioClip walkSoundGrass;
 
         private void Start()
         {
@@ -57,6 +64,7 @@ namespace Custom.Scripts
             {
                 if (Input.GetButtonDown("Dash"))
                 {
+                    DashAudio.PlayOneShot(dashSound);
                     dash = true;
                     nextDashTime = Time.time + 1f / dashRate;
 
@@ -74,6 +82,26 @@ namespace Custom.Scripts
                 horMove = 0f; vertMove = 0f; // Reset movement if attacking
             }
             controller.Move(horMove, vertMove, dash);
+            if(SceneManager.GetActiveScene().buildIndex == 1)
+            {
+                AudioSource.clip = walkSoundStone;
+            }
+            else
+            {
+                AudioSource.clip = walkSoundGrass;
+            }
+            if (horMove != 0 || vertMove != 0)
+            {
+                if (!AudioSource.isPlaying)
+                {
+                    AudioSource.pitch = 2;
+                    AudioSource.Play();
+                }
+            }
+            else
+            {
+                AudioSource.Stop();
+            }
             dash = false;
         }
     }

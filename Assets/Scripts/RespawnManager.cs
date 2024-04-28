@@ -1,9 +1,11 @@
 using Custom.Scripts;
 using JetBrains.Annotations;
 using System.Collections;
+using System.Net.NetworkInformation;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Vitals;
 using XEntity.InventoryItemSystem;
 
 public class RespawnManager : MonoBehaviour
@@ -14,6 +16,10 @@ public class RespawnManager : MonoBehaviour
     private bool respawn = false;
     public int playerLife = 100;
     public bool transition = false;
+
+    public AudioSource AudioSource;
+    public AudioClip deathSound;
+    public AudioClip spawnSound;
 
     public static RespawnManager Instance
     {
@@ -68,10 +74,10 @@ public class RespawnManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        player = GameObject.Find("Player");
         // This function is called when a new scene is loaded.
         if (scene.buildIndex == 1 && !transition) // Assuming SpawnPoint is only relevant in scene index 1
         {
-            player = GameObject.Find("Player");
             spawnPoint = GameObject.Find("SpawnPoint");
 
             if (player != null && spawnPoint != null)
@@ -93,6 +99,9 @@ public class RespawnManager : MonoBehaviour
 
     private void Update()
     {
+        player = GameObject.Find("Player");
+        PlayerCharacter playerCharacter = player.GetComponent<PlayerCharacter>();
+
         if (playerLife <= 0)
         {
             respawn = true;
@@ -100,8 +109,19 @@ public class RespawnManager : MonoBehaviour
 
         if (respawn)
         {
-            SceneManager.LoadScene(1);
+            AudioSource.PlayOneShot(deathSound);
             ItemManager.Instance.itemList.Clear();
+            SceneManager.LoadScene(1);
+     
+        }
+        if (player != null)
+        {
+            if (playerCharacter != null)
+            {
+                playerCharacter.health.Set(playerLife);
+                VitalsUIBind bindComponent = playerCharacter.healthBar.GetComponent<VitalsUIBind>();
+                bindComponent.UpdateImage(playerCharacter.health.Value, playerCharacter.health.MaxValue, false);
+            }
         }
     }
 }
