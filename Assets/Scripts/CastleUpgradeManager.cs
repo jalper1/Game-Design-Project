@@ -33,39 +33,46 @@ public class CastleUpgradeManager : MonoBehaviour
         webs = GameObject.Find("webs");
         bookshelves_0 = GameObject.Find("bookshelves_0");
         bookshelves_1 = GameObject.Find("bookshelves_1");
-        castleLevel = 1;
-
-        // Set the base castle visuals
-        setBaseCastle();
-    }
-
-    void Update()
-    {
         castleLevel = GameManager.Instance.coreLevel;
-        switch (castleLevel)
+
+        if (GameManager.Instance.coreLevel != 1)
         {
-            // case 1 is the base level
-            case 1:
-                setBaseCastle();
-                break;
-            case 2:
-                rocks.SetActive(false);
-                break;
-            case 3:
-                upgradeWindows();
-                upgradeBookshelves();
-                break;
-            case 4:
-                upgradeCarpet();
-                break;
-            case 5:
-                webs.SetActive(false);
-                break;
-            case 6:
-                upgradeThrone();
-                break;
+            Update();
+        } else
+        {
+            // Set the base castle visuals
+            setBaseCastle();
         }
     }
+
+void Update()
+{
+    castleLevel = GameManager.Instance.coreLevel;
+    setBaseCastle();
+
+    switch (castleLevel)
+    {
+        case 6:
+            upgradeThrone();
+            goto case 5;
+        case 5:
+            webs.SetActive(false);
+            goto case 4;
+        case 4:
+            upgradeCarpet();
+            upgradeWindows();
+            goto case 3;
+        case 3:
+            upgradeBookshelves();
+            goto case 2;
+        case 2:
+            rocks.SetActive(false);
+            break;
+        default:
+            break;
+    }
+}
+
 
     void setBaseCastle()
     {
@@ -83,21 +90,18 @@ public class CastleUpgradeManager : MonoBehaviour
     }
     void upgradeCarpet()
     {
-        upgradeWindows();
         carpet_0.SetActive(false);
         carpet_1.SetActive(true);
     }
 
     void upgradeThrone()
     {
-        upgradeCarpet();
         throne_0.SetActive(false);
         throne_1.SetActive(true);
     }
 
     void upgradeWindows()
     {
-        rocks.SetActive(false);
         windows_all_0.SetActive(false);
         windows_all_1.SetActive(true);
     }
