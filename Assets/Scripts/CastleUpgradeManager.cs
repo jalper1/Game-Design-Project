@@ -18,7 +18,8 @@ public class CastleUpgradeManager : MonoBehaviour
     private GameObject windows_all_0;
     private GameObject windows_all_1;
     private GameObject rocks;
-    private GameObject bookshelves;
+    private GameObject bookshelves_0;
+    private GameObject bookshelves_1;
 
     void Start()
     {
@@ -30,7 +31,8 @@ public class CastleUpgradeManager : MonoBehaviour
         windows_all_1 = GameObject.Find("windows_all_1");
         rocks = GameObject.Find("rocks");
         webs = GameObject.Find("webs");
-        bookshelves = GameObject.Find("bookshelves");
+        bookshelves_0 = GameObject.Find("bookshelves_0");
+        bookshelves_1 = GameObject.Find("bookshelves_1");
         castleLevel = 1;
 
         // Set the base castle visuals
@@ -47,16 +49,19 @@ public class CastleUpgradeManager : MonoBehaviour
                 setBaseCastle();
                 break;
             case 2:
-                webs.SetActive(false);
                 rocks.SetActive(false);
                 break;
             case 3:
                 upgradeWindows();
+                upgradeBookshelves();
                 break;
             case 4:
                 upgradeCarpet();
                 break;
             case 5:
+                webs.SetActive(false);
+                break;
+            case 6:
                 upgradeThrone();
                 break;
         }
@@ -69,11 +74,12 @@ public class CastleUpgradeManager : MonoBehaviour
         webs.SetActive(true);
         windows_all_0.SetActive(true);
         rocks.SetActive(true);
-        bookshelves.SetActive(true);
+        bookshelves_0.SetActive(true);
 
         carpet_1.SetActive(false);
         throne_1.SetActive(false);
         windows_all_1.SetActive(false);
+        bookshelves_1.SetActive(false);
     }
     void upgradeCarpet()
     {
@@ -91,10 +97,15 @@ public class CastleUpgradeManager : MonoBehaviour
 
     void upgradeWindows()
     {
-        webs.SetActive(false);
         rocks.SetActive(false);
         windows_all_0.SetActive(false);
         windows_all_1.SetActive(true);
+    }
+
+    void upgradeBookshelves()
+    {
+        bookshelves_0.SetActive(false);
+        bookshelves_1.SetActive(true);
     }
 
 }
