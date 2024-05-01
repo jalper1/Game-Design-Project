@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 441876777308609518}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.52, y: 0.863, z: 0}
+  m_LocalPosition: {x: -0.521, y: 0.832, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -622,7 +622,7 @@ SpriteRenderer:
   m_SortingLayerID: -1761893101
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300090, guid: 15b2d2faaecad4bfb9edc6585d94f509, type: 3}
+  m_Sprite: {fileID: 21300086, guid: 15b2d2faaecad4bfb9edc6585d94f509, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -711,7 +711,7 @@ SpriteRenderer:
   m_SortingLayerID: -1761893101
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300114, guid: 15b2d2faaecad4bfb9edc6585d94f509, type: 3}
+  m_Sprite: {fileID: 21300124, guid: 15b2d2faaecad4bfb9edc6585d94f509, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -795,7 +795,7 @@ SpriteRenderer:
   m_SortingLayerID: -1761893101
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300266, guid: 15b2d2faaecad4bfb9edc6585d94f509, type: 3}
+  m_Sprite: {fileID: 21300230, guid: 15b2d2faaecad4bfb9edc6585d94f509, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -828,7 +828,7 @@ GameObject:
   - component: {fileID: 8413730339042261434}
   - component: {fileID: 424379209930322830}
   m_Layer: 6
-  m_Name: Enemy
+  m_Name: Enemy2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -843,8 +843,8 @@ Transform:
   m_GameObject: {fileID: 6347656663121111748}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.15, y: -2.32, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.10243, y: -4.9514, z: -0.11892}
+  m_LocalScale: {x: 3.3783758, y: 3.3783758, z: 3.3783758}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6348615764810024740}
@@ -922,11 +922,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 6432661556529053598}
-  maxHealth: 100
+  maxHealth: 140
   hitBox: {fileID: 5999617248421987845}
   healthBar: {fileID: 1547932570273680158}
   thiefHealthBar: {fileID: 5931555033740482856}
-  harvestStrength: 1
+  harvestStrength: 2
   harvestItem: {fileID: 11400000, guid: fb2e3ac08b0fb21418730258ea516b30, type: 2}
   AudioSource: {fileID: 4432357078549512144}
   enemyDeathSound: {fileID: 8300000, guid: 9dd41082130c38a4d860b76f77ff7cf0, type: 3}
@@ -947,13 +947,13 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4096
   attackPoint: {fileID: 8082525387220506348}
-  attackRange: 0.4
-  attackStrength: 10
+  attackRange: 1.25
+  attackStrength: 20
   AudioSource: {fileID: 8413730339042261434}
   playerHurtSound: {fileID: 8300000, guid: 3781d8c5b750eb14db2bc91b22ef30de, type: 3}
   playerHurtSound2: {fileID: 8300000, guid: afa3e9c446292654681fad33f3097b13, type: 3}
   attackDelay: 0.275
-  attackRate: 1
+  attackRate: 0.5
   nextAttackTime: 0
 --- !u!50 &5811005004854324739
 Rigidbody2D:
@@ -1008,7 +1008,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.3
-  m_Speed: 3.5
+  m_Speed: 2.5
   m_Acceleration: 10
   avoidancePriority: 50
   m_AngularSpeed: 200
@@ -1063,7 +1063,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 0.15
-  m_Pitch: 1
+  m_Pitch: 0.75
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -1328,7 +1328,7 @@ SpriteRenderer:
   m_SortingLayerID: -1761893101
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300012, guid: 15b2d2faaecad4bfb9edc6585d94f509, type: 3}
+  m_Sprite: {fileID: 21300006, guid: 15b2d2faaecad4bfb9edc6585d94f509, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1497,7 +1497,7 @@ SpriteRenderer:
   m_SortingLayerID: -1761893101
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300010, guid: 15b2d2faaecad4bfb9edc6585d94f509, type: 3}
+  m_Sprite: {fileID: 21300004, guid: 15b2d2faaecad4bfb9edc6585d94f509, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1581,7 +1581,7 @@ SpriteRenderer:
   m_SortingLayerID: -1761893101
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300266, guid: 15b2d2faaecad4bfb9edc6585d94f509, type: 3}
+  m_Sprite: {fileID: 21300230, guid: 15b2d2faaecad4bfb9edc6585d94f509, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

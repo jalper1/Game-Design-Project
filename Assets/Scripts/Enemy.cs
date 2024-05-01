@@ -96,6 +96,11 @@ namespace Custom.Scripts
             ItemContainer itemContainer;
             List<Item> itemList = ItemManager.Instance.itemList;
             itemList.Add(harvestItem);
+            Debug.Log(gameObject.name);
+            if(gameObject.name == "Enemy2(Clone)")
+            {
+                itemList.Add(harvestItem);
+            }
             resourceManager.AddToResourceTotal(harvestStrength, harvestItem.name);
 
             GameObject playerInventory = GameObject.Find("Player Inventory");

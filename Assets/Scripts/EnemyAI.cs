@@ -28,6 +28,9 @@ public class EnemyAI : MonoBehaviour
     public AudioClip playerHurtSound;
     public AudioClip playerHurtSound2;
 
+    public float attackDelay;
+    public float attackRate = 2f;
+    public float nextAttackTime = 0f;
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +40,7 @@ public class EnemyAI : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+        attackDelay = 0.275f;
     }
 
     private void Update()
@@ -60,14 +64,17 @@ public class EnemyAI : MonoBehaviour
 
         }
 
-        playerZone = Physics2D.OverlapCircle(transform.position, attackRange, playerHitLayers);
+        playerZone = Physics2D.OverlapCircle(attackPoint.position, attackRange, playerHitLayers);
         if (playerZone != null)
         {
             animator.SetFloat("Speed", 0);
-
-            if (!isAttacking && !animator.GetCurrentAnimatorStateInfo(0).IsName("die")) // Only check for player range if not already attacking
+            if (Time.time >= nextAttackTime) // Check if not attacking
             {
-                Attack();
+                if (!isAttacking && !animator.GetCurrentAnimatorStateInfo(0).IsName("die")) // Only check for player range if not already attacking
+                {
+                    Attack();
+                    nextAttackTime = Time.time + 1f / attackRate;
+                }
             }
         }
         else
@@ -79,7 +86,7 @@ public class EnemyAI : MonoBehaviour
     private async void FinishAttack()
     {
         int hurt = Random.Range(0, 2);
-        playerZone = Physics2D.OverlapCircle(transform.position, attackRange, playerHitLayers);
+        playerZone = Physics2D.OverlapCircle(attackPoint.position, attackRange, playerHitLayers);
         if (playerCharacter.health.Value <= 0 || animator.GetCurrentAnimatorStateInfo(0).IsName("hurt") || playerZone == null)
         {
             isAttacking = false;
@@ -105,11 +112,11 @@ public class EnemyAI : MonoBehaviour
     void Attack()
     {
         isAttacking = true;
-        playerZone = Physics2D.OverlapCircle(transform.position, attackRange, playerHitLayers);
+        playerZone = Physics2D.OverlapCircle(attackPoint.position, attackRange, playerHitLayers);
         if (playerZone != null && !animator.GetCurrentAnimatorStateInfo(0).IsName("hurt"))
         {
             animator.SetTrigger("Attack");
-            Invoke("FinishAttack", 0.275f);
+            Invoke("FinishAttack", attackDelay);
         }
         else
         {
@@ -122,6 +129,6 @@ public class EnemyAI : MonoBehaviour
     {
         if (attackPoint == null)
             return;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 }

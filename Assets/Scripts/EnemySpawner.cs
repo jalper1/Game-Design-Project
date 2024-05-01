@@ -6,14 +6,19 @@ public class EnemySpawner : MonoBehaviour
 {
     public float spawnRate = 1f;
     public GameObject enemyPrefab;
+    public GameObject enemyPrefab2;
     public bool canSpawn = true;
     public Transform player;
     public Camera mainCamera;
     public float spawnOffset = 1f; // Offset from camera view for spawning
     private int direction = 1;
 
+    private string sceneName;
+    private int count = 0;
+
     private void Start()
     {
+        sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
         StartCoroutine(SpawnEnemy());
     }
 
@@ -48,7 +53,15 @@ public class EnemySpawner : MonoBehaviour
             float playerY = player.position.y;
             // Spawn enemy
             Vector3 spawnPosition = new Vector3(spawnX, playerY, 0f);
-            Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+            if (count >= 3 && sceneName == "Mountains")
+            {
+                Instantiate(enemyPrefab2, spawnPosition, Quaternion.identity);
+                count = 0;
+            } else
+            {
+                Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+                count++;
+            }
         }
     }
 }

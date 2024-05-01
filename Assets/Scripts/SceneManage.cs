@@ -53,4 +53,9 @@ public class SceneManage : MonoBehaviour
         UnityEditor.EditorApplication.isPlaying = false;
 #endif
     }
+
+    public void Click()
+    {
+        AudioSource.PlayOneShot(playButtonClick);
+    }
 }

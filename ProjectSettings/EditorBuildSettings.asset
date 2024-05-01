@@ -14,7 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Forest.unity
     guid: 108f971d968b2d14fac3f25e8933f057
-  - enabled: 0
-    path: Assets/Scenes/Death.unity
-    guid: 0a6fb46ae808c614dac5d8b54a7e4768
+  - enabled: 1
+    path: Assets/Scenes/Mountains.unity
+    guid: 2c7224ee673b7384487d710b138cd4f9
   m_configObjects: {}

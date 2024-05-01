@@ -7,9 +7,9 @@ public class LevelLoader : MonoBehaviour
 {
     public Animator transition;
     public float transitionTime = 1f;
-    public GameObject player;
 
     private bool playerEnteredTrigger = false;
+    public int levelToLoad;
 
     // Detect when the player enters the trigger collider
     private void OnTriggerEnter2D(Collider2D other)
@@ -26,15 +26,8 @@ public class LevelLoader : MonoBehaviour
         if (playerEnteredTrigger)
         {
             playerEnteredTrigger = false; // Reset flag
-            LoadNextLevel();
+            StartCoroutine(LoadLevel(levelToLoad));
         }
-    }
-
-    // Load the next level
-    public void LoadNextLevel()
-    {
-        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        StartCoroutine(LoadLevel(currentSceneIndex + 1));
     }
 
     // Coroutine to load the level with transition

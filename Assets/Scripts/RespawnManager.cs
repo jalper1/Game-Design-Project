@@ -123,5 +123,7 @@ public class RespawnManager : MonoBehaviour
                 bindComponent.UpdateImage(playerCharacter.health.Value, playerCharacter.health.MaxValue, false);
             }
         }
+        Debug.Log(playerLife);
+        Debug.Log(playerCharacter.health.Value);
     }
 }

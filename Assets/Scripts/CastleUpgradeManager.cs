@@ -35,44 +35,42 @@ public class CastleUpgradeManager : MonoBehaviour
         bookshelves_1 = GameObject.Find("bookshelves_1");
         castleLevel = GameManager.Instance.coreLevel;
 
-        if (GameManager.Instance.coreLevel != 1)
+        if (GameManager.Instance.coreLevel == 1)
         {
-            Update();
-        } else
-        {
-            // Set the base castle visuals
             setBaseCastle();
         }
     }
 
-void Update()
-{
-    castleLevel = GameManager.Instance.coreLevel;
-    setBaseCastle();
-
-    switch (castleLevel)
+    void Update()
     {
-        case 6:
-            upgradeThrone();
-            goto case 5;
-        case 5:
-            webs.SetActive(false);
-            goto case 4;
-        case 4:
-            upgradeCarpet();
-            upgradeWindows();
-            goto case 3;
-        case 3:
-            upgradeBookshelves();
-            goto case 2;
-        case 2:
-            rocks.SetActive(false);
-            break;
-        default:
-            break;
-    }
-}
+        if (GameManager.Instance.coreLevel != 1)
+        {
+            castleLevel = GameManager.Instance.coreLevel;
+            setBaseCastle();
 
+            switch (castleLevel)
+            {
+                case 6:
+                    upgradeThrone();
+                    goto case 5;
+                case 5:
+                    webs.SetActive(false);
+                    goto case 4;
+                case 4:
+                    upgradeCarpet();
+                    upgradeWindows();
+                    goto case 3;
+                case 3:
+                    upgradeBookshelves();
+                    goto case 2;
+                case 2:
+                    rocks.SetActive(false);
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
 
     void setBaseCastle()
     {

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6288588766743185869}
   - component: {fileID: 944464205325453938}
   - component: {fileID: 3328505549394574595}
+  - component: {fileID: 2845200520685615394}
   m_Layer: 0
   m_Name: ruins_collider
   m_TagString: Untagged
@@ -133,11 +134,27 @@ PolygonCollider2D:
       - {x: -0.85499996, y: -1.055}
       - {x: -0.97499996, y: -1.0649999}
       - {x: -0.97499996, y: -1.9497718}
-      - {x: 0.055250287, y: -2.2592125}
+      - {x: 0.062592626, y: -2.0022168}
       - {x: 1.165, y: -1.995}
       - {x: 1.165, y: -1.4449999}
       - {x: 1.155, y: -1.125}
   m_UseDelaunayMesh: 0
+--- !u!114 &2845200520685615394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4508631862037905262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!1 &7166353203457380976
 GameObject:
   m_ObjectHideFlags: 0
@@ -148,7 +165,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6225423682369838696}
   - component: {fileID: 4053274278876239569}
-  - component: {fileID: 1677015578829808549}
   m_Layer: 0
   m_Name: ruins_top
   m_TagString: Untagged
@@ -211,7 +227,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -812532217
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 8a3b193e9eb353d4093af6d5617b92e0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -224,19 +240,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1677015578829808549
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7166353203457380976}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_OverrideArea: 1
-  m_Area: 1
-  m_IgnoreFromBuild: 0
-  m_AffectedAgents: ffffffff

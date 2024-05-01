@@ -368,7 +368,7 @@ SpriteRenderer:
   m_SortingLayerID: -423778657
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300028, guid: 15b2d2faaecad4bfb9edc6585d94f509, type: 3}
+  m_Sprite: {fileID: 21300036, guid: 15b2d2faaecad4bfb9edc6585d94f509, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -789,7 +789,7 @@ SpriteRenderer:
   m_SortingLayerID: -423778657
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300286, guid: 15b2d2faaecad4bfb9edc6585d94f509, type: 3}
+  m_Sprite: {fileID: 21300294, guid: 15b2d2faaecad4bfb9edc6585d94f509, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1065,7 +1065,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae1cdaac12cc4a659c35e6dc50e67cf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <RegenerationRate>k__BackingField: 7.5
+  <RegenerationRate>k__BackingField: 7
   <DrainRate>k__BackingField: 0
   staminaComponent: {fileID: 321340890651772805}
 --- !u!114 &2938723571114065015
