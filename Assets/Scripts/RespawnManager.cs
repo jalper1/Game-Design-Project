@@ -82,12 +82,13 @@ public class RespawnManager : MonoBehaviour
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         player = GameObject.Find("Player");
-        if(scene.buildIndex == 1 && mountainTransition && !respawn)
+        if (scene.buildIndex == 1 && mountainTransition && !respawn)
         {
             mountainSpawnPoint = GameObject.Find("MountainSpawnPoint");
             if (player != null && mountainSpawnPoint != null)
             {
                 player.transform.position = mountainSpawnPoint.transform.position;
+                mountainTransition = false;
             }
             else
             {
@@ -117,8 +118,14 @@ public class RespawnManager : MonoBehaviour
                     case 4:
                         playerLife = 160;
                         break;
+                    case 5:
+                        playerLife = 180;
+                        break;
+                    case 6:
+                        GameManager.Instance.win = true;
+                        break;
                     default:
-                        playerLife = 100;
+                        playerLife = 180;
                         break;
                 }
             }
@@ -139,6 +146,31 @@ public class RespawnManager : MonoBehaviour
         playerCharacter = player.GetComponent<PlayerCharacter>();
         bindComponent = playerCharacter.healthBar.GetComponent<VitalsUIBind>();
 
+        switch (GameManager.Instance.coreLevel)
+        {
+            case 1:
+                playerCharacter.health.SetMax(100);
+                break;
+            case 2:
+                playerCharacter.health.SetMax(120);
+                break;
+            case 3:
+                playerCharacter.health.SetMax(140);
+                break;
+            case 4:
+                playerCharacter.health.SetMax(160);
+                break;
+            case 5:
+                playerCharacter.health.SetMax(180);
+                break;
+            case 6:
+                GameManager.Instance.win = true;
+                break;
+            default:
+                playerCharacter.health.SetMax(180);
+                break;
+        }
+
         if (playerLife <= 0)
         {
             respawn = true;
@@ -157,7 +189,8 @@ public class RespawnManager : MonoBehaviour
             playerCharacter.health.Set(playerLife);
             bindComponent.UpdateImage(playerCharacter.health.Value, playerCharacter.health.MaxValue, false);
         }
-        //Debug.Log("health:" + playerLife);
-        //Debug.Log("health:" + playerCharacter.health.Value);
+        Debug.Log("lifehealth:" + playerLife);
+        Debug.Log("uihealth:" + playerCharacter.health.Value);
+        Debug.Log("uimaxhealth:" + playerCharacter.health.MaxValue);
     }
 }

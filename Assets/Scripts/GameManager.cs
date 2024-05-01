@@ -17,6 +17,8 @@ namespace Custom.Scripts
         public bool levelup = false;
         public int harvestStrength = 1;
 
+        public bool win = false;
+
         // doing something don't interrupt
         public static GameManager Instance
         {
@@ -60,6 +62,11 @@ namespace Custom.Scripts
             {
                 dialogueWords[0] = "Castle Core level upgraded to " + (coreLevel + 1) + "!";
                 dialogueWords[1] = core;
+                if (win)
+                {
+                    dialogueWords[0] = core;
+                    dialogueWords[1] = "";
+                }
             }
         }
 

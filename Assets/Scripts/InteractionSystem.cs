@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Custom.Scripts
@@ -36,6 +37,11 @@ namespace Custom.Scripts
                             GameManager.Instance.playerResources.GetResourceTotal("Stone") >= GameManager.Instance.stoneRequired &&
                             GameManager.Instance.playerResources.GetResourceTotal("Husk") >= GameManager.Instance.huskRequired)
                         {
+                            if (GameManager.Instance.win)
+                            {
+                                GameManager.Instance.core = "Your castle core is fully upgraded!";
+                                return;
+                            }
                             GameManager.Instance.IncreaseCoreLevel();
                             GameManager.Instance.playerResources.AddToResourceTotal(-GameManager.Instance.huskRequired, "Husk");
                             GameManager.Instance.playerResources.AddToResourceTotal(-GameManager.Instance.woodRequired, "Wood");

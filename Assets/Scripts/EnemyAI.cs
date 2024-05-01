@@ -17,7 +17,6 @@ public class EnemyAI : MonoBehaviour
     public Transform attackPoint;
     public float attackRange = 0.5f;
     public float attackStrength = 10f;
-    float newHealth;
     Collider2D playerZone;
 
     bool isAttacking = false; // Flag to track if enemy is attacking
@@ -45,6 +44,14 @@ public class EnemyAI : MonoBehaviour
 
     private void Update()
     {
+        if (playerCharacter.health.Value == playerCharacter.health.MaxValue)
+        {
+            playerCharacter.health.Set(RespawnManager.Instance.playerLife);
+            playerCharacter.health.SetMax(RespawnManager.Instance.playerLife);
+            VitalsUIBind bindComponent = playerCharacter.healthBar.GetComponent<VitalsUIBind>();
+            bindComponent.UpdateImage(playerCharacter.health.Value, playerCharacter.health.MaxValue, false);
+        }
+        
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("die"))
         {
             agent.isStopped = true;
@@ -100,13 +107,12 @@ public class EnemyAI : MonoBehaviour
         {
             AudioSource.PlayOneShot(playerHurtSound);
         }
-
         RespawnManager.Instance.playerCharacter.health.Decrease(attackStrength);
         RespawnManager.Instance.bindComponent = playerCharacter.healthBar.GetComponent<VitalsUIBind>();
         RespawnManager.Instance.bindComponent.UpdateImage(playerCharacter.health.Value, playerCharacter.health.MaxValue, false);
         RespawnManager.Instance.playerLife = (int)playerCharacter.health.Value;
-        Debug.Log("health:" + playerCharacter.health.Value);
-        Debug.Log("maxhealth:" + playerCharacter.health.MaxValue);
+        //Debug.Log("health:" + playerCharacter.health.Value);
+        //Debug.Log("maxhealth:" + playerCharacter.health.MaxValue);
         await Task.Delay(1000);
         isAttacking = false;
     }

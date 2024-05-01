@@ -72,9 +72,16 @@ public class Dialogue : MonoBehaviour
                             GameManager.Instance.harvestStrength = 5;
                             RespawnManager.Instance.playerLife = 160;
                             break;
+                        case 5:
+                            GameManager.Instance.harvestStrength = 6;
+                            RespawnManager.Instance.playerLife = 180;
+                            break;
+                        case 6:
+                            GameManager.Instance.win = true;
+                            break;
                         default:
-                            GameManager.Instance.harvestStrength = 2;
-                            RespawnManager.Instance.playerLife = 100;
+                            GameManager.Instance.harvestStrength = 6;
+                            RespawnManager.Instance.playerLife = 180;
                             break;
                     }
                     playerCharacter.health.SetMax(RespawnManager.Instance.playerLife);
