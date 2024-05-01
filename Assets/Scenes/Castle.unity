@@ -208,6 +208,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 149547238}
     - target: {fileID: 2938723571114065015, guid: 9c649565af941e94c8366b43343093c9, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2938723571114065015, guid: 9c649565af941e94c8366b43343093c9, type: 3}
       propertyPath: staminaBar
       value: 
       objectReference: {fileID: 602661043}
@@ -307,7 +311,7 @@ Transform:
   m_GameObject: {fileID: 72576735}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.23, y: -2.13, z: 0}
+  m_LocalPosition: {x: 0.59, y: -2.13, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2157,8 +2161,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d78f9ec7012dfb499f596c54d9929f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mountainSpawnPoint: {fileID: 1980010563}
   playerLife: 100
   transition: 0
+  bindComponent: {fileID: 0}
+  playerCharacter: {fileID: 0}
+  mountainTransition: 0
   AudioSource: {fileID: 1224100952}
   deathSound: {fileID: 8300000, guid: 5d64807952baaa441b36c79c415431eb, type: 3}
   spawnSound: {fileID: 8300000, guid: b0e62ed71b1538648b719821f4f63b4c, type: 3}
@@ -3987,6 +3995,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5227728120609390016, guid: dc37644cc1b1032488618a286625254a, type: 3}
   m_PrefabInstance: {fileID: 2547958245606093432}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1980010563
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1980010564}
+  m_Layer: 0
+  m_Name: MountainSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1980010564
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1980010563}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -27.04, y: -2.43, z: -0.026688341}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2026298806
 GameObject:
   m_ObjectHideFlags: 0
@@ -5465,3 +5504,4 @@ SceneRoots:
   - {fileID: 1799155342}
   - {fileID: 2123809401}
   - {fileID: 702797248}
+  - {fileID: 1980010564}

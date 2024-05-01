@@ -26,6 +26,14 @@ public class LevelLoader : MonoBehaviour
         if (playerEnteredTrigger)
         {
             playerEnteredTrigger = false; // Reset flag
+            if(levelToLoad == 1)
+            {
+                RespawnManager.Instance.transition = true;
+            }
+            if(SceneManager.GetActiveScene().buildIndex == 3)
+            {
+                RespawnManager.Instance.mountainTransition = true;
+            }
             StartCoroutine(LoadLevel(levelToLoad));
         }
     }
