@@ -103,30 +103,34 @@ public class RespawnManager : MonoBehaviour
             if (player != null && spawnPoint != null)
             {
                 player.transform.position = spawnPoint.transform.position;
-                respawn = false;
-                switch (GameManager.Instance.coreLevel)
+                if (!GameManager.Instance.fromMenu)
                 {
-                    case 1:
-                        playerLife = 100;
-                        break;
-                    case 2:
-                        playerLife = 120;
-                        break;
-                    case 3:
-                        playerLife = 140;
-                        break;
-                    case 4:
-                        playerLife = 160;
-                        break;
-                    case 5:
-                        playerLife = 180;
-                        break;
-                    case 6:
-                        GameManager.Instance.win = true;
-                        break;
-                    default:
-                        playerLife = 180;
-                        break;
+                    respawn = false;
+                    switch (GameManager.Instance.coreLevel)
+                    {
+                        case 1:
+                            playerLife = 100;
+                            break;
+                        case 2:
+                            playerLife = 120;
+                            break;
+                        case 3:
+                            playerLife = 140;
+                            break;
+                        case 4:
+                            playerLife = 160;
+                            break;
+                        case 5:
+                            playerLife = 180;
+                            break;
+                        case 6:
+                            GameManager.Instance.win = true;
+                            break;
+                        default:
+                            playerLife = 180;
+                            break;
+                    }
+                    GameManager.Instance.fromMenu = true;
                 }
             }
             else
@@ -143,8 +147,11 @@ public class RespawnManager : MonoBehaviour
     private void Update()
     {
         player = GameObject.Find("Player");
-        playerCharacter = player.GetComponent<PlayerCharacter>();
-        bindComponent = playerCharacter.healthBar.GetComponent<VitalsUIBind>();
+        if (player != null)
+        {
+            playerCharacter = player.GetComponent<PlayerCharacter>();
+            bindComponent = playerCharacter.healthBar.GetComponent<VitalsUIBind>();
+        }
 
         switch (GameManager.Instance.coreLevel)
         {
@@ -178,10 +185,10 @@ public class RespawnManager : MonoBehaviour
 
         if (respawn)
         {
+            GameManager.Instance.fromMenu = false;
             AudioSource.PlayOneShot(deathSound);
             ItemManager.Instance.itemList.Clear();
             SceneManager.LoadScene(1);
-
         }
         if (player != null && playerCharacter != null)
         {

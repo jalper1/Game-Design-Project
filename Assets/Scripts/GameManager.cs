@@ -19,6 +19,8 @@ namespace Custom.Scripts
 
         public bool win = false;
 
+        public bool fromMenu = true;
+
         // doing something don't interrupt
         public static GameManager Instance
         {
@@ -54,6 +56,10 @@ namespace Custom.Scripts
             return coreLevel;
         }
 
+        private void Start()
+        {
+            fromMenu = true;
+        }
         private void Update()
         {
             dialogueWords[0] = core;

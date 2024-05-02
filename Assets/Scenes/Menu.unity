@@ -1233,6 +1233,10 @@ PrefabInstance:
       value: GameManager
       objectReference: {fileID: 0}
     - target: {fileID: 7803055731172131955, guid: 6f2f003d71d5d8a43ae59ecde23b4157, type: 3}
+      propertyPath: fromMenu
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7803055731172131955, guid: 6f2f003d71d5d8a43ae59ecde23b4157, type: 3}
       propertyPath: huskRequired
       value: 10
       objectReference: {fileID: 0}
