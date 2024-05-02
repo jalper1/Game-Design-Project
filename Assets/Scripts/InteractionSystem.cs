@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using XEntity.InventoryItemSystem;
 
 namespace Custom.Scripts
 {
@@ -14,6 +15,10 @@ namespace Custom.Scripts
         public LayerMask detectionLayer;
         private string layerName = null;
         private Collider2D objectDetectionCollider;
+
+        public Item wood;
+        public Item stone;
+        public Item husk;
 
         private void Start()
         {
@@ -46,6 +51,44 @@ namespace Custom.Scripts
                             GameManager.Instance.playerResources.AddToResourceTotal(-GameManager.Instance.huskRequired, "Husk");
                             GameManager.Instance.playerResources.AddToResourceTotal(-GameManager.Instance.woodRequired, "Wood");
                             GameManager.Instance.playerResources.AddToResourceTotal(-GameManager.Instance.stoneRequired, "Stone");
+
+                            int woodCount = 0;
+                            int stoneCount = 0;
+                            int huskCount = 0;
+                            for ( int j = 0; j < ItemManager.Instance.itemList.Count; j++)
+                            {
+                                if (ItemManager.Instance.itemList[j].name == "Wood")
+                                {
+                                    woodCount++;
+                                } else if (ItemManager.Instance.itemList[j].name == "Stone")
+                                {
+                                    stoneCount++;
+                                } else if (ItemManager.Instance.itemList[j].name == "Husk")
+                                {
+                                    huskCount++;
+                                }
+                            }
+
+                            woodCount = woodCount - GameManager.Instance.woodRequired;
+                            stoneCount = stoneCount - GameManager.Instance.stoneRequired;
+                            huskCount = huskCount - GameManager.Instance.huskRequired;
+                            ItemManager.Instance.itemList.Clear();
+
+                            for (int i = 0; i < woodCount; i++)
+                            {
+                                ItemManager.Instance.itemList.Add(wood);
+                            }
+
+                            for (int i = 0; i < stoneCount; i++)
+                            {
+                                ItemManager.Instance.itemList.Add(stone);
+                            }
+
+                            for (int i = 0; i < huskCount; i++)
+                            {
+                                ItemManager.Instance.itemList.Add(husk);
+                            }
+
                             GameManager.Instance.huskRequired += 5;
                             GameManager.Instance.woodRequired += 10;
                             GameManager.Instance.stoneRequired += 10;
