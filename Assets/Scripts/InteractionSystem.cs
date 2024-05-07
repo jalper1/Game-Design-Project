@@ -72,32 +72,29 @@ namespace Custom.Scripts
                                 }
                             }
 
-                            woodCount = woodCount - GameManager.Instance.woodRequired;
-                            stoneCount = stoneCount - GameManager.Instance.stoneRequired;
-                            huskCount = huskCount - GameManager.Instance.huskRequired;
+                            woodCount -= GameManager.Instance.woodRequired;
+                            stoneCount -= GameManager.Instance.stoneRequired;
+                            huskCount -= GameManager.Instance.huskRequired;
                             ItemManager.Instance.itemList.Clear();
-
+                            GameObject playerInventory = GameObject.Find("Player Inventory");
+                            itemContainer = playerInventory.GetComponent<ItemContainer>();
+                            itemContainer.clearInv();
                             for (int i = 0; i < woodCount; i++)
                             {
                                 ItemManager.Instance.itemList.Add(wood);
+                                itemContainer.AddItem(wood);
                             }
 
                             for (int i = 0; i < stoneCount; i++)
                             {
                                 ItemManager.Instance.itemList.Add(stone);
+                                itemContainer.AddItem(stone);
                             }
 
                             for (int i = 0; i < huskCount; i++)
                             {
                                 ItemManager.Instance.itemList.Add(husk);
-                            }
-                            GameObject playerInventory = GameObject.Find("Player Inventory");
-                            itemContainer = playerInventory.GetComponent<ItemContainer>();
-
-                            if (itemContainer != null)
-                            {
-                                itemContainer.clearInv();
-                                itemContainer.populateInv();
+                                itemContainer.AddItem(husk);
                             }
                             GameManager.Instance.huskRequired += 5;
                             GameManager.Instance.woodRequired += 10;
