@@ -1,9 +1,11 @@
 using Custom.Scripts;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using Vitals;
+using XEntity.InventoryItemSystem;
 
 public class Dialogue : MonoBehaviour
 {
@@ -34,6 +36,10 @@ public class Dialogue : MonoBehaviour
     public AudioClip levelupAudio;
     public AudioClip dialogueAudio;
 
+    int woodNum;
+    int stoneNum;
+    int huskNum;
+
     // TODO: add in disabling dialogue interaction when npc dies or no longer need it
 
     // Update is called once per frame
@@ -41,12 +47,58 @@ public class Dialogue : MonoBehaviour
     {
         speaker[0] = "Core";
     }
+
+    private void Awake()
+    {
+        woodNum = GameManager.Instance.woodRequired;
+        stoneNum = GameManager.Instance.stoneRequired;
+        huskNum = GameManager.Instance.huskRequired;
+    }
     void Update()
     {
         player = GameObject.Find("Player");
         playerCharacter = player.GetComponent<PlayerCharacter>();
         if (UnityEngine.Input.GetButtonDown("Interact") && dialogueActivated == true)
         {
+            GameObject playerInventory = GameObject.Find("Player Inventory");
+            ItemContainer itemContainer = playerInventory.GetComponent<ItemContainer>();
+
+            //if (playerInventory)
+            //{
+            //    Debug.Log("player inv is init");
+            //}
+            //else
+            //{
+            //    Debug.Log("player inv WRONG");
+            //}
+
+            //if (itemContainer)
+            //{
+            //    Debug.Log("itemContainer is init");
+            //}
+            //else
+            //{
+            //    Debug.Log("itemContainer WRONG");
+            //}
+
+            //if (playerInventory && itemContainer && itemContainer.slots != null)
+            //{
+            //    for (int i = 0; i < itemContainer.slots.Length; i++)
+            //    {
+            //        if (itemContainer.slots[i].slotItem != null)
+            //        {
+            //            if (itemContainer.slots[i].slotItem.name == "Wood")
+            //            {
+            //                Debug.Log("Removing 1 Wood count in inventory UI");
+            //                int woodNum = 1;
+            //                itemContainer.slots[i].Remove(woodNum);
+            //            }
+            //        }
+            //    }
+            //    itemContainer.clearInv();
+            //    itemContainer.populateInv();
+            //}
+
             if (step >= GameManager.Instance.dialogueWords.Length || GameManager.Instance.dialogueWords[step] == "")
             {
                 GameManager.Instance.inDialogue = false;
@@ -95,8 +147,91 @@ public class Dialogue : MonoBehaviour
                     playerCharacter.health.Set(RespawnManager.Instance.playerLife);
                     VitalsUIBind bindComponent = playerCharacter.healthBar.GetComponent<VitalsUIBind>();
                     bindComponent.UpdateImage(playerCharacter.health.Value, playerCharacter.health.MaxValue, false);
+
+                    //update the inventory UI
+                    GameObject playerInv = GameObject.Find("Player Inventory");
+                    if (playerInv)
+                    {
+                        ItemContainer itemCont = playerInv.GetComponent<ItemContainer>();
+                        if (playerInv && itemCont && itemCont.slots != null)
+                        {
+                            for (int i = 0; i < itemCont.slots.Length; i++)
+                            {
+                                if (itemCont.slots[i].slotItem != null)
+                                {
+                                    if (itemCont.slots[i].slotItem.name == "Wood")
+                                    {
+                                        Debug.Log("Updating Wood count in inventory UI");
+                                        Debug.Log("woodNum: " + woodNum);
+                                        itemCont.slots[i].Remove(woodNum);
+                                    }
+                                    else if (itemCont.slots[i].slotItem.name == "Stone")
+                                    {
+                                        Debug.Log("Updating Stone count in inventory UI");
+                                        Debug.Log("stoneNum: " + stoneNum);
+                                        itemCont.slots[i].Remove(stoneNum);
+                                    }
+                                    else if (itemCont.slots[i].slotItem.name == "Husk")
+                                    {
+                                        Debug.Log("Updating Husk count in inventory UI");
+                                        Debug.Log("huskNum: " + huskNum);
+                                        itemCont.slots[i].Remove(huskNum);
+                                    }
+                                }
+                            }
+                        }
+
+                        // update the item list
+                        List<Item> itemList = ItemManager.Instance.itemList;
+                        int woodRemaining = woodNum;
+                        int stoneRemaining = stoneNum;
+                        int huskRemaining = huskNum;
+
+                        for (int i = 0; i < itemList.Count; i++)
+                        {
+                            if (woodRemaining > 0)
+                            {
+                                if (itemList[i].itemName == "Wood")
+                                {
+                                    itemList.Remove(itemList[i]);
+                                    woodRemaining--;
+                                }
+                            }
+                        }
+                        for (int i = 0; i < itemList.Count; i++)
+                        {
+                            if (stoneRemaining > 0)
+                            {
+                                if (itemList[i].itemName == "Stone")
+                                {
+                                    itemList.Remove(itemList[i]);
+                                    stoneRemaining--;
+                                }
+                            }
+                        }
+                        for (int i = 0; i < itemList.Count; i++)
+                        {
+                            if (huskRemaining > 0)
+                            {
+                                if (itemList[i].itemName == "Husk")
+                                {
+                                    itemList.Remove(itemList[i]);
+                                    huskRemaining--;
+                                }
+                            }
+                        }
+
+                    }
+                    else
+                    {
+                        Debug.Log("Error: Can't find player inventory");
+                    }
+
                 }
                 GameManager.Instance.levelup = false;
+                woodNum = GameManager.Instance.woodRequired;
+                stoneNum = GameManager.Instance.stoneRequired;
+                huskNum = GameManager.Instance.huskRequired;
             }
             else
             {
