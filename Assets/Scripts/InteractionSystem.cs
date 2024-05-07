@@ -20,6 +20,8 @@ namespace Custom.Scripts
         public Item stone;
         public Item husk;
 
+        ItemContainer itemContainer;
+
         private void Start()
         {
             GameManager.Instance.core = "You need " + GameManager.Instance.huskRequired + " Husks, " + GameManager.Instance.woodRequired + " Wood, and " + GameManager.Instance.stoneRequired + " Stone for the next upgrade!";
@@ -51,19 +53,20 @@ namespace Custom.Scripts
                             GameManager.Instance.playerResources.AddToResourceTotal(-GameManager.Instance.huskRequired, "Husk");
                             GameManager.Instance.playerResources.AddToResourceTotal(-GameManager.Instance.woodRequired, "Wood");
                             GameManager.Instance.playerResources.AddToResourceTotal(-GameManager.Instance.stoneRequired, "Stone");
-
                             int woodCount = 0;
                             int stoneCount = 0;
                             int huskCount = 0;
-                            for ( int j = 0; j < ItemManager.Instance.itemList.Count; j++)
+                            for (int j = 0; j < ItemManager.Instance.itemList.Count; j++)
                             {
                                 if (ItemManager.Instance.itemList[j].name == "Wood")
                                 {
                                     woodCount++;
-                                } else if (ItemManager.Instance.itemList[j].name == "Stone")
+                                }
+                                else if (ItemManager.Instance.itemList[j].name == "Stone")
                                 {
                                     stoneCount++;
-                                } else if (ItemManager.Instance.itemList[j].name == "Husk")
+                                }
+                                else if (ItemManager.Instance.itemList[j].name == "Husk")
                                 {
                                     huskCount++;
                                 }
@@ -88,7 +91,14 @@ namespace Custom.Scripts
                             {
                                 ItemManager.Instance.itemList.Add(husk);
                             }
+                            GameObject playerInventory = GameObject.Find("Player Inventory");
+                            itemContainer = playerInventory.GetComponent<ItemContainer>();
 
+                            if (itemContainer != null)
+                            {
+                                itemContainer.clearInv();
+                                itemContainer.populateInv();
+                            }
                             GameManager.Instance.huskRequired += 5;
                             GameManager.Instance.woodRequired += 10;
                             GameManager.Instance.stoneRequired += 10;

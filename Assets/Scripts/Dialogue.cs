@@ -101,6 +101,7 @@ public class Dialogue : MonoBehaviour
 
             if (step >= GameManager.Instance.dialogueWords.Length || GameManager.Instance.dialogueWords[step] == "")
             {
+                GameManager.Instance.inDialogue = false;
                 dialogueCanvas.SetActive(false);
                 step = 0;
                 if (GameManager.Instance.levelup)
@@ -109,22 +110,27 @@ public class Dialogue : MonoBehaviour
                     switch (GameManager.Instance.coreLevel)
                     {
                         case 1:
+                            GameManager.Instance.attackStrength = 40;
                             GameManager.Instance.harvestStrength = 2;
                             RespawnManager.Instance.playerLife = 100;
                             break;
                         case 2:
+                            GameManager.Instance.attackStrength = 45;
                             GameManager.Instance.harvestStrength = 3;
                             RespawnManager.Instance.playerLife = 120;
                             break;
                         case 3:
+                            GameManager.Instance.attackStrength = 50;
                             GameManager.Instance.harvestStrength = 4;
                             RespawnManager.Instance.playerLife = 140;
                             break;
                         case 4:
+                            GameManager.Instance.attackStrength = 55;
                             GameManager.Instance.harvestStrength = 5;
                             RespawnManager.Instance.playerLife = 160;
                             break;
                         case 5:
+                            GameManager.Instance.attackStrength = 60;
                             GameManager.Instance.harvestStrength = 6;
                             RespawnManager.Instance.playerLife = 180;
                             break;
@@ -132,6 +138,7 @@ public class Dialogue : MonoBehaviour
                             GameManager.Instance.win = true;
                             break;
                         default:
+                            GameManager.Instance.attackStrength = 60;
                             GameManager.Instance.harvestStrength = 6;
                             RespawnManager.Instance.playerLife = 180;
                             break;
@@ -228,6 +235,7 @@ public class Dialogue : MonoBehaviour
             }
             else
             {
+                GameManager.Instance.inDialogue = true;
                 dialogueCanvas.SetActive(true);
                 speakerText.text = speaker[0];
                 dialogueText.text = GameManager.Instance.dialogueWords[step];
