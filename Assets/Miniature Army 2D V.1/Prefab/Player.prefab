@@ -994,6 +994,9 @@ MonoBehaviour:
   detectionLayer:
     serializedVersion: 2
     m_Bits: 3072
+  wood: {fileID: 11400000, guid: e17e972f7ff8eb44c950e480afac4b0f, type: 2}
+  stone: {fileID: 11400000, guid: 8ca26c4a40ea3864eaab9f582b93a787, type: 2}
+  husk: {fileID: 11400000, guid: fb2e3ac08b0fb21418730258ea516b30, type: 2}
 --- !u!50 &6809411106186222390
 Rigidbody2D:
   serializedVersion: 4

@@ -16,6 +16,8 @@ namespace Custom.Scripts
         public string[] dialogueWords;
         public bool levelup = false;
         public int harvestStrength = 1;
+        public int attackStrength = 40;
+        public bool inDialogue = false;
 
         public bool win = false;
 

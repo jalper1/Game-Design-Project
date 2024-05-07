@@ -20,7 +20,6 @@ namespace Custom.Scripts
         public Transform attackPoint;
         public float attackRange = 0.5f;
         public LayerMask hitLayers;
-        public int attackStrength = 40;
         public LayerMask resourceLayers;
 
         PlayerCharacter playerCharacter;
@@ -110,7 +109,7 @@ namespace Custom.Scripts
 
             foreach (Collider2D enemy in hitEnemies)
             {
-                enemy.transform.root.GetComponent<Enemy>().ReceiveDamage(attackStrength);
+                enemy.transform.root.GetComponent<Enemy>().ReceiveDamage(GameManager.Instance.attackStrength);
             }
             foreach (Collider2D resource in hitResources)
             {

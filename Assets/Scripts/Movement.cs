@@ -39,7 +39,11 @@ namespace Custom.Scripts
         // Update is called once per frame
         void Update()
         {
-
+            if(GameManager.Instance.inDialogue)
+            {
+                animator.SetFloat("Speed", 0);
+                return;
+            }
             horMove = Input.GetAxisRaw("Horizontal") * (runSpeed / 4);
             vertMove = Input.GetAxisRaw("Vertical") * (runSpeed / 4);
             animator.SetFloat("Speed", Mathf.Abs(horMove) + Mathf.Abs(vertMove));
